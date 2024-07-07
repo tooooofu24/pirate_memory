@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pirate_memory/config/app_colors.dart';
@@ -6,23 +7,27 @@ class AppFilledButton extends StatelessWidget {
   const AppFilledButton({
     required this.text,
     required this.onPressed,
-    this.color = AppColors.primary,
+    this.backGroundColor = AppColors.primary,
+    this.textColor = Colors.white,
     super.key,
   });
 
   final VoidCallback onPressed;
   final String text;
-  final Color color;
+  final Color backGroundColor;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
-    return FilledButton(
+    return CupertinoButton(
       onPressed: onPressed,
-      style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all(color),
-      ),
+      color: backGroundColor,
       child: Text(
         text,
+        style: TextStyle(
+          color: textColor,
+          fontSize: 18,
+        ),
       ),
     );
   }
@@ -33,6 +38,7 @@ class AppFilledButton extends StatelessWidget {
     properties.add(StringProperty('text', text));
     properties
         .add(ObjectFlagProperty<VoidCallback>.has('onPressed', onPressed));
-    properties.add(ColorProperty('color', color));
+    properties.add(ColorProperty('backGroundColor', backGroundColor));
+    properties.add(ColorProperty('textColor', textColor));
   }
 }

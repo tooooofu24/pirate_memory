@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pirate_memory/components/button/app_fillled_button.dart';
-import 'package:pirate_memory/components/button/app_outline_button.dart';
+import 'package:pirate_memory/screens/home/home_controller.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final controller = HomeController();
     return MaterialApp(
       home: Scaffold(
         body: Center(
@@ -26,7 +27,9 @@ class HomeScreen extends ConsumerWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: AppOutlineButton(
+                  child: AppFilledButton(
+                    backGroundColor: Colors.blue.shade50,
+                    textColor: Colors.blue,
                     onPressed: () {},
                     text: '遊び方',
                   ),
@@ -37,7 +40,7 @@ class HomeScreen extends ConsumerWidget {
                 SizedBox(
                   width: double.infinity,
                   child: AppFilledButton(
-                    onPressed: () {},
+                    onPressed: () async => controller.startGame(context),
                     text: 'ゲームを始める',
                   ),
                 ),
