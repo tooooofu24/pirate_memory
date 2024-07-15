@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pirate_memory/components/button/app_fillled_button.dart';
 import 'package:pirate_memory/screens/member_select/member_select_controller.dart';
 
 class MemberSelectScreen extends StatelessWidget {
@@ -17,28 +16,32 @@ class MemberSelectScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text('プレイ人数を選択'),
-                AppFilledButton(
-                  onPressed: () async => controller.showPicker(context),
-                  text: '2人',
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: FilledButton(
+                    onPressed: () async => controller.showPicker(context),
+                    child: const Text('2人'),
+                  ),
                 ),
                 const Text('誰がどの色の海賊にするか決めてください'),
                 const SizedBox(height: 15),
                 const SizedBox(height: 15),
                 SizedBox(
                   width: double.infinity,
-                  child: AppFilledButton(
+                  height: 50,
+                  child: FilledButton(
                     onPressed: () {},
-                    text: 'スタート',
+                    child: const Text('スタート'),
                   ),
                 ),
                 const SizedBox(height: 15),
                 SizedBox(
                   width: double.infinity,
-                  child: AppFilledButton(
-                    backGroundColor: Colors.blue.shade50,
-                    textColor: Colors.blue,
+                  height: 50,
+                  child: FilledButton.tonal(
                     onPressed: () async => controller.goBack(context),
-                    text: '戻る',
+                    child: const Text('戻る'),
                   ),
                 ),
               ],

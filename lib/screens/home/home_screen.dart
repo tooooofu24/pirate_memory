@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pirate_memory/components/button/app_fillled_button.dart';
 import 'package:pirate_memory/screens/home/home_controller.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -27,11 +26,10 @@ class HomeScreen extends ConsumerWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: AppFilledButton(
-                    backGroundColor: Colors.blue.shade50,
-                    textColor: Colors.blue,
-                    onPressed: () {},
-                    text: '遊び方',
+                  height: 50,
+                  child: FilledButton.tonal(
+                    onPressed: () async => controller.startGame(context),
+                    child: const Text('遊び方'),
                   ),
                 ),
                 const SizedBox(
@@ -39,9 +37,10 @@ class HomeScreen extends ConsumerWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: AppFilledButton(
+                  height: 50,
+                  child: FilledButton(
                     onPressed: () async => controller.startGame(context),
-                    text: 'ゲームを始める',
+                    child: const Text('ゲームを始める'),
                   ),
                 ),
               ],

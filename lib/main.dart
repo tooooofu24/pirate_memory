@@ -15,6 +15,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: 'パイレーツメモリー',
       theme: ThemeData(
+        useMaterial3: true,
         primarySwatch: AppColors.primary,
         fontFamily: 'Main',
       ),
