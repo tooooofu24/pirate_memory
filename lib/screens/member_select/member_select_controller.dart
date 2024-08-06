@@ -4,15 +4,13 @@ import 'package:pirate_memory/notifiers/game_notifier.dart';
 import 'package:pirate_memory/screens/member_select/member_select_state.dart';
 import 'package:pirate_memory/screens/member_setting/member_setting_screen.dart';
 
-final memberSelectProvider = StateNotifierProvider.autoDispose<
-    MemberSelectController, MemberSelectState>(
+final memberSelectProvider =
+    StateNotifierProvider<MemberSelectController, MemberSelectState>(
   (ref) => MemberSelectController(const MemberSelectState()),
 );
 
 class MemberSelectController extends StateNotifier<MemberSelectState> {
   MemberSelectController(super._state);
-
-  bool get isEnabled => state.count != null;
 
   final Map<String, int> options = {
     '2人': 2,
@@ -25,6 +23,13 @@ class MemberSelectController extends StateNotifier<MemberSelectState> {
   }
 
   void goBack(BuildContext context) => Navigator.pop(context);
+
+  String? validatePlayerCount(int? value) {
+    if (value == null) {
+      return 'プレイ人数を選択してください';
+    }
+    return null;
+  }
 
   Future<void> onSubmit(BuildContext context, WidgetRef ref) async {
     ref.read(gameProvider.notifier).setupPlayers(state.count!);
