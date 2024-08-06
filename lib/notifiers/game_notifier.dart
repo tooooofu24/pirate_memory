@@ -1,12 +1,19 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pirate_memory/models/game.dart';
 import 'package:pirate_memory/models/player.dart';
+import 'package:pirate_memory/models/player_color.dart';
 
 class GameNotifier extends StateNotifier<Game> {
-  GameNotifier() : super(Game(players: [], turnCount: 0, fields: []));
+  GameNotifier() : super(Game(players: [], fields: []));
 
-  void addPlayer(Player player) {
-    state = state.copyWith(players: [...state.players, player]);
+  void setupPlayers(int playerCount) {
+    final players = List.generate(
+      playerCount,
+      (index) => Player(
+        color: PlayerColor.values[index],
+      ),
+    );
+    state = state.copyWith(players: players);
   }
 
   void removePlayer(String playerName) {

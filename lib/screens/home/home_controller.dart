@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pirate_memory/screens/member_select/member_select_screen.dart';
 
-class HomeController {
+class HomeController extends ChangeNotifier {
   Future<void> startGame(
     BuildContext context,
   ) async {

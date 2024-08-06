@@ -7,8 +7,8 @@ part 'player.freezed.dart';
 @freezed
 class Player with _$Player {
   factory Player({
-    required String name,
     required PlayerColor color,
-    required List<Card> cards,
+    @Default('') String name,
+    @Default([]) List<Card> cards,
   }) = _Player;
 }

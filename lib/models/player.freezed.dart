@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Player {
-  String get name => throw _privateConstructorUsedError;
   PlayerColor get color => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   List<Card> get cards => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +29,7 @@ abstract class $PlayerCopyWith<$Res> {
   factory $PlayerCopyWith(Player value, $Res Function(Player) then) =
       _$PlayerCopyWithImpl<$Res, Player>;
   @useResult
-  $Res call({String name, PlayerColor color, List<Card> cards});
+  $Res call({PlayerColor color, String name, List<Card> cards});
 }
 
 /// @nodoc
@@ -45,19 +45,19 @@ class _$PlayerCopyWithImpl<$Res, $Val extends Player>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
     Object? color = null,
+    Object? name = null,
     Object? cards = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as PlayerColor,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       cards: null == cards
           ? _value.cards
           : cards // ignore: cast_nullable_to_non_nullable
@@ -73,7 +73,7 @@ abstract class _$$PlayerImplCopyWith<$Res> implements $PlayerCopyWith<$Res> {
       __$$PlayerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, PlayerColor color, List<Card> cards});
+  $Res call({PlayerColor color, String name, List<Card> cards});
 }
 
 /// @nodoc
@@ -87,19 +87,19 @@ class __$$PlayerImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
     Object? color = null,
+    Object? name = null,
     Object? cards = null,
   }) {
     return _then(_$PlayerImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as PlayerColor,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       cards: null == cards
           ? _value._cards
           : cards // ignore: cast_nullable_to_non_nullable
@@ -112,17 +112,17 @@ class __$$PlayerImplCopyWithImpl<$Res>
 
 class _$PlayerImpl implements _Player {
   _$PlayerImpl(
-      {required this.name,
-      required this.color,
-      required final List<Card> cards})
+      {required this.color, this.name = '', final List<Card> cards = const []})
       : _cards = cards;
 
   @override
-  final String name;
-  @override
   final PlayerColor color;
+  @override
+  @JsonKey()
+  final String name;
   final List<Card> _cards;
   @override
+  @JsonKey()
   List<Card> get cards {
     if (_cards is EqualUnmodifiableListView) return _cards;
     // ignore: implicit_dynamic_type
@@ -131,7 +131,7 @@ class _$PlayerImpl implements _Player {
 
   @override
   String toString() {
-    return 'Player(name: $name, color: $color, cards: $cards)';
+    return 'Player(color: $color, name: $name, cards: $cards)';
   }
 
   @override
@@ -139,14 +139,14 @@ class _$PlayerImpl implements _Player {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayerImpl &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.color, color) || other.color == color) &&
+            (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._cards, _cards));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, color, const DeepCollectionEquality().hash(_cards));
+      runtimeType, color, name, const DeepCollectionEquality().hash(_cards));
 
   @JsonKey(ignore: true)
   @override
@@ -157,14 +157,14 @@ class _$PlayerImpl implements _Player {
 
 abstract class _Player implements Player {
   factory _Player(
-      {required final String name,
-      required final PlayerColor color,
-      required final List<Card> cards}) = _$PlayerImpl;
+      {required final PlayerColor color,
+      final String name,
+      final List<Card> cards}) = _$PlayerImpl;
 
   @override
-  String get name;
-  @override
   PlayerColor get color;
+  @override
+  String get name;
   @override
   List<Card> get cards;
   @override

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pirate_memory/screens/home/home_controller.dart';
 
-class HomeScreen extends ConsumerWidget {
-  const HomeScreen({super.key});
+class MemberSettingScreen extends ConsumerWidget {
+  const MemberSettingScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = HomeController();
     return MaterialApp(
       home: Scaffold(
         body: Center(
@@ -37,7 +35,7 @@ class HomeScreen extends ConsumerWidget {
                   width: double.infinity,
                   height: 50,
                   child: FilledButton(
-                    onPressed: () async => controller.startGame(context),
+                    onPressed: () => {},
                     child: const Text('ゲームを始める'),
                   ),
                 ),
