@@ -41,6 +41,15 @@ class MemberSelectScreen extends ConsumerWidget {
                     SizedBox(
                       width: double.infinity,
                       height: 50,
+                      child: FilledButton.tonal(
+                        onPressed: () async => controller.goBack(context),
+                        child: const Text('戻る'),
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
                       child: FilledButton(
                         onPressed: () async {
                           if (formKey.currentState != null &&
@@ -49,15 +58,6 @@ class MemberSelectScreen extends ConsumerWidget {
                           }
                         },
                         child: const Text('決定'),
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: FilledButton.tonal(
-                        onPressed: () async => controller.goBack(context),
-                        child: const Text('戻る'),
                       ),
                     ),
                     const SizedBox(height: 75),

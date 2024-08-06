@@ -26,7 +26,7 @@ class MemberSelectController extends StateNotifier<MemberSelectState> {
 
   String? validatePlayerCount(int? value) {
     if (value == null) {
-      return 'プレイ人数を選択してください';
+      return 'プレイ人数を選択してください！';
     }
     return null;
   }
