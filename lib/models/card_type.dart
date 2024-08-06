@@ -1,5 +1,5 @@
 enum CardType {
-  treasureChest,
+  treasureBox,
   singleGem,
   doubleGem,
   bomb,

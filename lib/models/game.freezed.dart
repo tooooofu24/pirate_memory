@@ -19,6 +19,7 @@ mixin _$Game {
   int get turnCount => throw _privateConstructorUsedError;
   List<Field> get fields => throw _privateConstructorUsedError;
   List<Player> get players => throw _privateConstructorUsedError;
+  PlayerColor get currentPlayerColor => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GameCopyWith<Game> get copyWith => throw _privateConstructorUsedError;
@@ -29,7 +30,11 @@ abstract class $GameCopyWith<$Res> {
   factory $GameCopyWith(Game value, $Res Function(Game) then) =
       _$GameCopyWithImpl<$Res, Game>;
   @useResult
-  $Res call({int turnCount, List<Field> fields, List<Player> players});
+  $Res call(
+      {int turnCount,
+      List<Field> fields,
+      List<Player> players,
+      PlayerColor currentPlayerColor});
 }
 
 /// @nodoc
@@ -48,6 +53,7 @@ class _$GameCopyWithImpl<$Res, $Val extends Game>
     Object? turnCount = null,
     Object? fields = null,
     Object? players = null,
+    Object? currentPlayerColor = null,
   }) {
     return _then(_value.copyWith(
       turnCount: null == turnCount
@@ -62,6 +68,10 @@ class _$GameCopyWithImpl<$Res, $Val extends Game>
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
               as List<Player>,
+      currentPlayerColor: null == currentPlayerColor
+          ? _value.currentPlayerColor
+          : currentPlayerColor // ignore: cast_nullable_to_non_nullable
+              as PlayerColor,
     ) as $Val);
   }
 }
@@ -73,7 +83,11 @@ abstract class _$$GameImplCopyWith<$Res> implements $GameCopyWith<$Res> {
       __$$GameImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int turnCount, List<Field> fields, List<Player> players});
+  $Res call(
+      {int turnCount,
+      List<Field> fields,
+      List<Player> players,
+      PlayerColor currentPlayerColor});
 }
 
 /// @nodoc
@@ -89,6 +103,7 @@ class __$$GameImplCopyWithImpl<$Res>
     Object? turnCount = null,
     Object? fields = null,
     Object? players = null,
+    Object? currentPlayerColor = null,
   }) {
     return _then(_$GameImpl(
       turnCount: null == turnCount
@@ -103,6 +118,10 @@ class __$$GameImplCopyWithImpl<$Res>
           ? _value._players
           : players // ignore: cast_nullable_to_non_nullable
               as List<Player>,
+      currentPlayerColor: null == currentPlayerColor
+          ? _value.currentPlayerColor
+          : currentPlayerColor // ignore: cast_nullable_to_non_nullable
+              as PlayerColor,
     ));
   }
 }
@@ -113,7 +132,8 @@ class _$GameImpl implements _Game {
   _$GameImpl(
       {this.turnCount = 0,
       final List<Field> fields = const [],
-      final List<Player> players = const []})
+      final List<Player> players = const [],
+      this.currentPlayerColor = PlayerColor.blue})
       : _fields = fields,
         _players = players;
 
@@ -139,8 +159,12 @@ class _$GameImpl implements _Game {
   }
 
   @override
+  @JsonKey()
+  final PlayerColor currentPlayerColor;
+
+  @override
   String toString() {
-    return 'Game(turnCount: $turnCount, fields: $fields, players: $players)';
+    return 'Game(turnCount: $turnCount, fields: $fields, players: $players, currentPlayerColor: $currentPlayerColor)';
   }
 
   @override
@@ -151,7 +175,9 @@ class _$GameImpl implements _Game {
             (identical(other.turnCount, turnCount) ||
                 other.turnCount == turnCount) &&
             const DeepCollectionEquality().equals(other._fields, _fields) &&
-            const DeepCollectionEquality().equals(other._players, _players));
+            const DeepCollectionEquality().equals(other._players, _players) &&
+            (identical(other.currentPlayerColor, currentPlayerColor) ||
+                other.currentPlayerColor == currentPlayerColor));
   }
 
   @override
@@ -159,7 +185,8 @@ class _$GameImpl implements _Game {
       runtimeType,
       turnCount,
       const DeepCollectionEquality().hash(_fields),
-      const DeepCollectionEquality().hash(_players));
+      const DeepCollectionEquality().hash(_players),
+      currentPlayerColor);
 
   @JsonKey(ignore: true)
   @override
@@ -172,7 +199,8 @@ abstract class _Game implements Game {
   factory _Game(
       {final int turnCount,
       final List<Field> fields,
-      final List<Player> players}) = _$GameImpl;
+      final List<Player> players,
+      final PlayerColor currentPlayerColor}) = _$GameImpl;
 
   @override
   int get turnCount;
@@ -180,6 +208,8 @@ abstract class _Game implements Game {
   List<Field> get fields;
   @override
   List<Player> get players;
+  @override
+  PlayerColor get currentPlayerColor;
   @override
   @JsonKey(ignore: true)
   _$$GameImplCopyWith<_$GameImpl> get copyWith =>
