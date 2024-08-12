@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HideSelectState {
+  int? get selectedFieldIndex => throw _privateConstructorUsedError;
   int? get selectedCardIndex => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +30,7 @@ abstract class $HideSelectStateCopyWith<$Res> {
           HideSelectState value, $Res Function(HideSelectState) then) =
       _$HideSelectStateCopyWithImpl<$Res, HideSelectState>;
   @useResult
-  $Res call({int? selectedCardIndex});
+  $Res call({int? selectedFieldIndex, int? selectedCardIndex});
 }
 
 /// @nodoc
@@ -45,9 +46,14 @@ class _$HideSelectStateCopyWithImpl<$Res, $Val extends HideSelectState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? selectedFieldIndex = freezed,
     Object? selectedCardIndex = freezed,
   }) {
     return _then(_value.copyWith(
+      selectedFieldIndex: freezed == selectedFieldIndex
+          ? _value.selectedFieldIndex
+          : selectedFieldIndex // ignore: cast_nullable_to_non_nullable
+              as int?,
       selectedCardIndex: freezed == selectedCardIndex
           ? _value.selectedCardIndex
           : selectedCardIndex // ignore: cast_nullable_to_non_nullable
@@ -64,7 +70,7 @@ abstract class _$$HideSelectStateImplCopyWith<$Res>
       __$$HideSelectStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? selectedCardIndex});
+  $Res call({int? selectedFieldIndex, int? selectedCardIndex});
 }
 
 /// @nodoc
@@ -78,9 +84,14 @@ class __$$HideSelectStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? selectedFieldIndex = freezed,
     Object? selectedCardIndex = freezed,
   }) {
     return _then(_$HideSelectStateImpl(
+      selectedFieldIndex: freezed == selectedFieldIndex
+          ? _value.selectedFieldIndex
+          : selectedFieldIndex // ignore: cast_nullable_to_non_nullable
+              as int?,
       selectedCardIndex: freezed == selectedCardIndex
           ? _value.selectedCardIndex
           : selectedCardIndex // ignore: cast_nullable_to_non_nullable
@@ -91,15 +102,18 @@ class __$$HideSelectStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HideSelectStateImpl implements _HideSelectState {
-  const _$HideSelectStateImpl({this.selectedCardIndex});
+class _$HideSelectStateImpl extends _HideSelectState {
+  const _$HideSelectStateImpl({this.selectedFieldIndex, this.selectedCardIndex})
+      : super._();
 
+  @override
+  final int? selectedFieldIndex;
   @override
   final int? selectedCardIndex;
 
   @override
   String toString() {
-    return 'HideSelectState(selectedCardIndex: $selectedCardIndex)';
+    return 'HideSelectState(selectedFieldIndex: $selectedFieldIndex, selectedCardIndex: $selectedCardIndex)';
   }
 
   @override
@@ -107,12 +121,15 @@ class _$HideSelectStateImpl implements _HideSelectState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HideSelectStateImpl &&
+            (identical(other.selectedFieldIndex, selectedFieldIndex) ||
+                other.selectedFieldIndex == selectedFieldIndex) &&
             (identical(other.selectedCardIndex, selectedCardIndex) ||
                 other.selectedCardIndex == selectedCardIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedCardIndex);
+  int get hashCode =>
+      Object.hash(runtimeType, selectedFieldIndex, selectedCardIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -122,10 +139,14 @@ class _$HideSelectStateImpl implements _HideSelectState {
           this, _$identity);
 }
 
-abstract class _HideSelectState implements HideSelectState {
-  const factory _HideSelectState({final int? selectedCardIndex}) =
-      _$HideSelectStateImpl;
+abstract class _HideSelectState extends HideSelectState {
+  const factory _HideSelectState(
+      {final int? selectedFieldIndex,
+      final int? selectedCardIndex}) = _$HideSelectStateImpl;
+  const _HideSelectState._() : super._();
 
+  @override
+  int? get selectedFieldIndex;
   @override
   int? get selectedCardIndex;
   @override

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pirate_memory/notifiers/game_notifier.dart';
+import 'package:pirate_memory/screens/hide_select/components/card_select.dart';
+import 'package:pirate_memory/screens/hide_select/components/field_select.dart';
 import 'package:pirate_memory/screens/hide_select/hide_select_controller.dart';
 
 class HideSelectScreen extends ConsumerWidget {
@@ -22,64 +24,36 @@ class HideSelectScreen extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Spacer(),
-                  GridView.count(
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 4,
-                    mainAxisSpacing: 8,
-                    shrinkWrap: true,
-                    children: List.generate(12, (index) {
-                      return const Image(
-                        image: AssetImage('assets/island.png'),
-                      );
-                    }),
+                  const Text('カードを隠す島を選んでください'),
+                  const SizedBox(height: 10),
+                  FieldSelect(
+                    fields: game.fields,
+                    selectedIndex: state.selectedFieldIndex,
+                    onSelect: controller.onSelectField,
                   ),
                   const Spacer(),
                   const Text('島に隠すカードを選んでください'),
                   const SizedBox(height: 10),
-                  SizedBox(
-                    height: 200,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: game.currentPlayer!.cards.length,
-                      itemBuilder: (context, index) {
-                        final card = game.currentPlayer!.cards[index];
-                        final isSelected = state.selectedCardIndex == index;
-                        final notSelectedYet = state.selectedCardIndex == null;
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: InkWell(
-                            onTap: () => controller.onSelectedCard(index),
-                            borderRadius: BorderRadius.circular(12),
-                            child: Container(
-                              foregroundDecoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                border: isSelected
-                                    ? Border.all(
-                                        color: Colors.blue,
-                                        width: 6,
-                                      )
-                                    : null,
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Opacity(
-                                  opacity:
-                                      !isSelected && !notSelectedYet ? 0.75 : 1,
-                                  child: Image.asset(card.image),
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+                  CardSelect(
+                    cards: game.currentPlayer!.cards,
+                    selectedIndex: state.selectedCardIndex,
+                    onSelect: controller.onSelectCard,
                   ),
                   const Spacer(),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
+                    child: FilledButton.tonal(
+                      onPressed: () async => controller.goBack(context),
+                      child: const Text('戻る'),
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
                     child: Opacity(
-                      opacity: state.selectedCardIndex == null ? 0.5 : 1,
+                      opacity: state.canSubmit ? 1 : 0.4,
                       child: FilledButton(
                         onPressed: () async =>
                             controller.onSubmit(context, ref),

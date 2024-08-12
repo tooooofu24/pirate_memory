@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 enum PlayerColor {
   blue,
   yellow,
@@ -31,6 +33,21 @@ extension PlayerColorPirateImage on PlayerColor {
         return 'assets/pirate-green.png';
       case PlayerColor.red:
         return 'assets/pirate-red.png';
+    }
+  }
+}
+
+extension PlayerColorColor on PlayerColor {
+  Color get color {
+    switch (this) {
+      case PlayerColor.blue:
+        return Colors.blue;
+      case PlayerColor.yellow:
+        return Colors.yellow;
+      case PlayerColor.green:
+        return Colors.green;
+      case PlayerColor.red:
+        return Colors.red;
     }
   }
 }
