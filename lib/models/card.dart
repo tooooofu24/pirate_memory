@@ -10,4 +10,8 @@ class Card with _$Card {
     required PlayerColor color,
     required CardType type,
   }) = _Card;
+
+  Card._();
+
+  String get image => 'assets/card/${color.name}/${type.kebabCase}.png';
 }

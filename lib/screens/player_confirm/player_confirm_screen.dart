@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pirate_memory/models/player_color.dart';
 import 'package:pirate_memory/notifiers/game_notifier.dart';
+import 'package:pirate_memory/screens/hide_select/hide_select_screen.dart';
 
 class PlayerConfirmScreen extends ConsumerWidget {
   const PlayerConfirmScreen({super.key});
@@ -9,7 +10,7 @@ class PlayerConfirmScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final game = ref.watch(gameProvider);
-    final currentPlayerColor = game.currentPlayerColor;
+    final currentPlayer = game.currentPlayer;
 
     return MaterialApp(
       home: Scaffold(
@@ -20,10 +21,10 @@ class PlayerConfirmScreen extends ConsumerWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('あなたは${currentPlayerColor.label}色の海賊ですか？'),
+                  Text('あなたは${currentPlayer!.color.label}色の海賊ですか？'),
                   const SizedBox(height: 50),
                   Image(
-                    image: AssetImage(currentPlayerColor.pirateImage),
+                    image: AssetImage(currentPlayer.color.pirateImage),
                     width: 200,
                   ),
                   const SizedBox(height: 75),
@@ -31,7 +32,12 @@ class PlayerConfirmScreen extends ConsumerWidget {
                     width: double.infinity,
                     height: 50,
                     child: FilledButton(
-                      onPressed: () {},
+                      onPressed: () async => Navigator.push(
+                        context,
+                        MaterialPageRoute<HideSelectScreen>(
+                          builder: (context) => const HideSelectScreen(),
+                        ),
+                      ),
                       child: const Text('はい'),
                     ),
                   ),

@@ -32,7 +32,7 @@ class MemberSelectController extends StateNotifier<MemberSelectState> {
   }
 
   Future<void> onSubmit(BuildContext context, WidgetRef ref) async {
-    ref.read(gameProvider.notifier).setupPlayers(state.count!);
+    ref.read(gameProvider.notifier).setupPlayers(state.count ?? 3);
     await Navigator.push(
       context,
       MaterialPageRoute<MemberSettingScreen>(

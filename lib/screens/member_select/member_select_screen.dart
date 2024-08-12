@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pirate_memory/notifiers/game_notifier.dart';
 import 'package:pirate_memory/screens/member_select/member_select_controller.dart';
 
 class MemberSelectScreen extends ConsumerWidget {
@@ -7,6 +8,7 @@ class MemberSelectScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final game = ref.watch(gameProvider);
     final controller = ref.read(memberSelectProvider.notifier);
     final formKey = GlobalKey<FormState>();
 
@@ -25,6 +27,7 @@ class MemberSelectScreen extends ConsumerWidget {
                     const Text('プレイ人数を選択'),
                     DropdownButtonFormField(
                       hint: const Text('選択して下さい'),
+                      value: 3,
                       onChanged: controller.onChanged,
                       validator: controller.validatePlayerCount,
                       items: controller.options.entries

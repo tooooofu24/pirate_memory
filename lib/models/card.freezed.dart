@@ -98,8 +98,8 @@ class __$$CardImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CardImpl implements _Card {
-  _$CardImpl({required this.color, required this.type});
+class _$CardImpl extends _Card {
+  _$CardImpl({required this.color, required this.type}) : super._();
 
   @override
   final PlayerColor color;
@@ -130,10 +130,11 @@ class _$CardImpl implements _Card {
       __$$CardImplCopyWithImpl<_$CardImpl>(this, _$identity);
 }
 
-abstract class _Card implements Card {
+abstract class _Card extends Card {
   factory _Card(
       {required final PlayerColor color,
       required final CardType type}) = _$CardImpl;
+  _Card._() : super._();
 
   @override
   PlayerColor get color;

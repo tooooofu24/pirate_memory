@@ -47,7 +47,7 @@ class GameNotifier extends StateNotifier<Game> {
         cards: _defaultCards(PlayerColor.values[index]),
       ),
     );
-    state = state.copyWith(players: players);
+    state = state.copyWith(players: players, currentPlayer: players.first);
   }
 
   void updatePlayers(List<Player> players) {

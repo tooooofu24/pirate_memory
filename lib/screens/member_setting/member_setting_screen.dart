@@ -40,6 +40,7 @@ class MemberSettingScreen extends ConsumerWidget {
                             title: TextFormField(
                               onChanged: (value) => {},
                               validator: controller.validatePlayerName,
+                              initialValue: 'プレイヤー${player.color.label}',
                               decoration: InputDecoration(
                                 hintText: '名前を入力して下さい',
                                 labelText: '${player.color.label}色の海賊',
