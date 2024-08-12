@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pirate_memory/notifiers/game_notifier.dart';
 import 'package:pirate_memory/screens/member_select/member_select_controller.dart';
 
 class MemberSelectScreen extends ConsumerWidget {
@@ -8,7 +7,6 @@ class MemberSelectScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final game = ref.watch(gameProvider);
     final controller = ref.read(memberSelectProvider.notifier);
     final formKey = GlobalKey<FormState>();
 

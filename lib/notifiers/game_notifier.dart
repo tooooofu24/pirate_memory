@@ -54,6 +54,10 @@ class GameNotifier extends StateNotifier<Game> {
     state = state.copyWith(players: players);
   }
 
+  void selectCard(Card? card) {
+    state = state.copyWith(selectedCard: card);
+  }
+
   void nextTurn() {
     state = state.copyWith(turnCount: state.turnCount + 1);
   }

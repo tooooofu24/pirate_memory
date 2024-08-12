@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pirate_memory/models/card.dart';
 import 'package:pirate_memory/models/field.dart';
 import 'package:pirate_memory/models/player.dart';
 
@@ -11,5 +12,6 @@ class Game with _$Game {
     @Default([]) List<Field> fields,
     @Default([]) List<Player> players,
     Player? currentPlayer,
+    Card? selectedCard,
   }) = _Game;
 }

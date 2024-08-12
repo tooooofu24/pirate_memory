@@ -20,6 +20,7 @@ mixin _$Game {
   List<Field> get fields => throw _privateConstructorUsedError;
   List<Player> get players => throw _privateConstructorUsedError;
   Player? get currentPlayer => throw _privateConstructorUsedError;
+  Card? get selectedCard => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GameCopyWith<Game> get copyWith => throw _privateConstructorUsedError;
@@ -34,7 +35,8 @@ abstract class $GameCopyWith<$Res> {
       {int turnCount,
       List<Field> fields,
       List<Player> players,
-      Player? currentPlayer});
+      Player? currentPlayer,
+      Card? selectedCard});
 
   $PlayerCopyWith<$Res>? get currentPlayer;
 }
@@ -56,6 +58,7 @@ class _$GameCopyWithImpl<$Res, $Val extends Game>
     Object? fields = null,
     Object? players = null,
     Object? currentPlayer = freezed,
+    Object? selectedCard = freezed,
   }) {
     return _then(_value.copyWith(
       turnCount: null == turnCount
@@ -74,6 +77,10 @@ class _$GameCopyWithImpl<$Res, $Val extends Game>
           ? _value.currentPlayer
           : currentPlayer // ignore: cast_nullable_to_non_nullable
               as Player?,
+      selectedCard: freezed == selectedCard
+          ? _value.selectedCard
+          : selectedCard // ignore: cast_nullable_to_non_nullable
+              as Card?,
     ) as $Val);
   }
 
@@ -101,7 +108,8 @@ abstract class _$$GameImplCopyWith<$Res> implements $GameCopyWith<$Res> {
       {int turnCount,
       List<Field> fields,
       List<Player> players,
-      Player? currentPlayer});
+      Player? currentPlayer,
+      Card? selectedCard});
 
   @override
   $PlayerCopyWith<$Res>? get currentPlayer;
@@ -121,6 +129,7 @@ class __$$GameImplCopyWithImpl<$Res>
     Object? fields = null,
     Object? players = null,
     Object? currentPlayer = freezed,
+    Object? selectedCard = freezed,
   }) {
     return _then(_$GameImpl(
       turnCount: null == turnCount
@@ -139,6 +148,10 @@ class __$$GameImplCopyWithImpl<$Res>
           ? _value.currentPlayer
           : currentPlayer // ignore: cast_nullable_to_non_nullable
               as Player?,
+      selectedCard: freezed == selectedCard
+          ? _value.selectedCard
+          : selectedCard // ignore: cast_nullable_to_non_nullable
+              as Card?,
     ));
   }
 }
@@ -150,7 +163,8 @@ class _$GameImpl implements _Game {
       {this.turnCount = 0,
       final List<Field> fields = const [],
       final List<Player> players = const [],
-      this.currentPlayer})
+      this.currentPlayer,
+      this.selectedCard})
       : _fields = fields,
         _players = players;
 
@@ -177,10 +191,12 @@ class _$GameImpl implements _Game {
 
   @override
   final Player? currentPlayer;
+  @override
+  final Card? selectedCard;
 
   @override
   String toString() {
-    return 'Game(turnCount: $turnCount, fields: $fields, players: $players, currentPlayer: $currentPlayer)';
+    return 'Game(turnCount: $turnCount, fields: $fields, players: $players, currentPlayer: $currentPlayer, selectedCard: $selectedCard)';
   }
 
   @override
@@ -193,7 +209,9 @@ class _$GameImpl implements _Game {
             const DeepCollectionEquality().equals(other._fields, _fields) &&
             const DeepCollectionEquality().equals(other._players, _players) &&
             (identical(other.currentPlayer, currentPlayer) ||
-                other.currentPlayer == currentPlayer));
+                other.currentPlayer == currentPlayer) &&
+            (identical(other.selectedCard, selectedCard) ||
+                other.selectedCard == selectedCard));
   }
 
   @override
@@ -202,7 +220,8 @@ class _$GameImpl implements _Game {
       turnCount,
       const DeepCollectionEquality().hash(_fields),
       const DeepCollectionEquality().hash(_players),
-      currentPlayer);
+      currentPlayer,
+      selectedCard);
 
   @JsonKey(ignore: true)
   @override
@@ -216,7 +235,8 @@ abstract class _Game implements Game {
       {final int turnCount,
       final List<Field> fields,
       final List<Player> players,
-      final Player? currentPlayer}) = _$GameImpl;
+      final Player? currentPlayer,
+      final Card? selectedCard}) = _$GameImpl;
 
   @override
   int get turnCount;
@@ -226,6 +246,8 @@ abstract class _Game implements Game {
   List<Player> get players;
   @override
   Player? get currentPlayer;
+  @override
+  Card? get selectedCard;
   @override
   @JsonKey(ignore: true)
   _$$GameImplCopyWith<_$GameImpl> get copyWith =>

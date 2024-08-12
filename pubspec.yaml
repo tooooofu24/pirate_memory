@@ -63,3 +63,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/card/blue/
+    - assets/card/green/
+    - assets/card/red/
+    - assets/card/yellow/
