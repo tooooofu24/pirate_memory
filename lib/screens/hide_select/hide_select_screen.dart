@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pirate_memory/models/player_color.dart';
 import 'package:pirate_memory/notifiers/game_notifier.dart';
 import 'package:pirate_memory/screens/hide_select/components/card_select.dart';
 import 'package:pirate_memory/screens/hide_select/components/field_select.dart';
@@ -30,6 +31,7 @@ class HideSelectScreen extends ConsumerWidget {
                     fields: game.fields,
                     selectedIndex: state.selectedFieldIndex,
                     onSelect: controller.onSelectField,
+                    primaryColor: game.currentPlayer!.color.color,
                   ),
                   const Spacer(),
                   const Text('島に隠すカードを選んでください'),
@@ -38,6 +40,7 @@ class HideSelectScreen extends ConsumerWidget {
                     cards: game.currentPlayer!.cards,
                     selectedIndex: state.selectedCardIndex,
                     onSelect: controller.onSelectCard,
+                    primaryColor: game.currentPlayer!.color.color,
                   ),
                   const Spacer(),
                   SizedBox(

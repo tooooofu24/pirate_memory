@@ -7,12 +7,14 @@ class CardSelect extends StatelessWidget {
     required this.cards,
     required this.selectedIndex,
     required this.onSelect,
+    required this.primaryColor,
     super.key,
   });
 
   final List<pirate_memory_card.Card> cards;
   final int? selectedIndex;
   final void Function(int) onSelect;
+  final Color primaryColor;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class CardSelect extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   border: isSelected
                       ? Border.all(
-                          color: Colors.blue,
+                          color: primaryColor,
                           width: 6,
                         )
                       : null,
@@ -66,5 +68,6 @@ class CardSelect extends StatelessWidget {
         onSelect,
       ),
     );
+    properties.add(ColorProperty('primaryColor', primaryColor));
   }
 }

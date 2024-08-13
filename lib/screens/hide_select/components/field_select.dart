@@ -7,12 +7,14 @@ class FieldSelect extends StatelessWidget {
     required this.fields,
     required this.selectedIndex,
     required this.onSelect,
+    required this.primaryColor,
     super.key,
   });
 
   final List<Field> fields;
   final int? selectedIndex;
   final void Function(int) onSelect;
+  final Color primaryColor;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class FieldSelect extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               border: isSelected
                   ? Border.all(
-                      color: Colors.blue,
+                      color: primaryColor,
                       width: 6,
                     )
                   : null,
@@ -62,5 +64,6 @@ class FieldSelect extends StatelessWidget {
     properties.add(
       ObjectFlagProperty<void Function(int p1)>.has('onSelect', onSelect),
     );
+    properties.add(ColorProperty('primaryColor', primaryColor));
   }
 }
