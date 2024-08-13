@@ -39,15 +39,26 @@ class HideSelectController extends StateNotifier<HideSelectState> {
     final cards = ref.watch(gameProvider).currentPlayer!.cards;
     final card = cards[state.selectedCardIndex!];
     final fieldIndex = state.selectedFieldIndex;
-    ref.read(gameProvider.notifier).setCard(card, fieldIndex!);
-    ref.read(gameProvider.notifier).turnToNextPlayer();
+    ref.read(gameProvider.notifier).hide(card, fieldIndex!);
     // stateを初期化する
     state = const HideSelectState();
-    await Navigator.pushReplacement(
-      context,
-      MaterialPageRoute<PlayerConfirmScreen>(
-        builder: (context) => const PlayerConfirmScreen(),
-      ),
-    );
+    // プレイヤーの手札がなくなったら次の画面に遷移
+    if (ref.watch(gameProvider).currentPlayer!.cards.isEmpty) {
+      await Navigator.pushReplacement(
+        context,
+        MaterialPageRoute<PlayerConfirmScreen>(
+          builder: (context) => const PlayerConfirmScreen(),
+        ),
+      );
+      return;
+    } else {
+      // 次のプレイヤーの手札があれば、次のプレイヤーの手札選択画面に遷移
+      await Navigator.pushReplacement(
+        context,
+        MaterialPageRoute<PlayerConfirmScreen>(
+          builder: (context) => const PlayerConfirmScreen(),
+        ),
+      );
+    }
   }
 }

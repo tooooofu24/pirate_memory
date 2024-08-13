@@ -81,21 +81,21 @@ class GameNotifier extends StateNotifier<Game> {
     state = state.copyWith(players: players);
   }
 
-  void setCard(Card card, int fieldIndex) {
+  void hide(Card card, int fieldIndex) {
     // プレイヤーのカードから選択されたカードを削除
+    _useCard(card);
+    // フィールドのカードを更新
+    _updateField(card, fieldIndex);
+    // 次のプレイヤーに交代
+    _turnToNextPlayer();
+  }
+
+  void _useCard(Card card) {
     final playerCards = state.currentPlayer!.cards;
     final newPlayerCards = List<Card>.from(playerCards);
     newPlayerCards.remove(card);
     final newPlayer = state.currentPlayer!.copyWith(cards: newPlayerCards);
-    // フィールドのカードを更新
-    final field = state.fields[fieldIndex];
-    final newField = field.copyWith(
-      cards: [...field.cards, card],
-    );
-    final newFields = List<Field>.from(state.fields);
-    newFields[fieldIndex] = newField;
     state = state.copyWith(
-      fields: newFields,
       currentPlayer: newPlayer,
       players: [
         for (final player in state.players)
@@ -104,7 +104,17 @@ class GameNotifier extends StateNotifier<Game> {
     );
   }
 
-  void turnToNextPlayer() {
+  void _updateField(Card card, int fieldIndex) {
+    final field = state.fields[fieldIndex];
+    final newField = field.copyWith(
+      cards: [...field.cards, card],
+    );
+    final newFields = List<Field>.from(state.fields);
+    newFields[fieldIndex] = newField;
+    state = state.copyWith(fields: newFields);
+  }
+
+  void _turnToNextPlayer() {
     final currentPlayer = state.currentPlayer!;
     final currentPlayerIndex = state.players.indexOf(currentPlayer);
     final nextPlayerIndex = (currentPlayerIndex + 1) % state.players.length;
