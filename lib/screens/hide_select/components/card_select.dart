@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:pirate_memory/components/card.dart';
 import 'package:pirate_memory/models/card.dart' as pirate_memory_card;
 
 class CardSelect extends StatelessWidget {
@@ -29,27 +30,12 @@ class CardSelect extends StatelessWidget {
           final isSelected = selectedIndex == index;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: InkWell(
+            child: CardWidget(
+              image: Image.asset(card.image),
+              primaryColor: primaryColor,
+              isSelected: isSelected,
               onTap: () => onSelect(index),
-              borderRadius: BorderRadius.circular(12),
-              child: Container(
-                foregroundDecoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  border: isSelected
-                      ? Border.all(
-                          color: primaryColor,
-                          width: 6,
-                        )
-                      : null,
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Opacity(
-                    opacity: !isSelected && !notSelectedYet ? 0.60 : 1,
-                    child: Image.asset(card.image),
-                  ),
-                ),
-              ),
+              disabled: !notSelectedYet && !isSelected,
             ),
           );
         },

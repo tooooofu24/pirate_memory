@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pirate_memory/components/card.dart';
 import 'package:pirate_memory/models/player_color.dart';
 import 'package:pirate_memory/notifiers/game_notifier.dart';
 import 'package:pirate_memory/screens/hide_select/hide_select_screen.dart';
@@ -23,9 +24,11 @@ class PlayerConfirmScreen extends ConsumerWidget {
                 children: [
                   Text('あなたは${currentPlayer!.color.label}色の海賊ですか？'),
                   const SizedBox(height: 50),
-                  Image(
-                    image: AssetImage(currentPlayer.color.pirateImage),
-                    width: 200,
+                  CardWidget(
+                    image: Image(
+                      image: AssetImage(currentPlayer.color.pirateImage),
+                      width: 200,
+                    ),
                   ),
                   const SizedBox(height: 75),
                   SizedBox(

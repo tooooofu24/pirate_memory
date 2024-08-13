@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:pirate_memory/components/card.dart';
 import 'package:pirate_memory/models/field.dart';
 
 class FieldSelect extends StatelessWidget {
@@ -30,27 +31,12 @@ class FieldSelect extends StatelessWidget {
       shrinkWrap: true,
       children: List.generate(fields.length, (index) {
         final isSelected = selectedIndex == index;
-        return InkWell(
+        return CardWidget(
+          image: Image.asset('assets/island.png'),
+          primaryColor: primaryColor,
+          isSelected: isSelected,
           onTap: () => onSelect(index),
-          borderRadius: BorderRadius.circular(12),
-          child: Container(
-            foregroundDecoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              border: isSelected
-                  ? Border.all(
-                      color: primaryColor,
-                      width: 6,
-                    )
-                  : null,
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Opacity(
-                opacity: !isSelected && !notSelectedYet ? 0.60 : 1,
-                child: Image.asset('assets/island.png'),
-              ),
-            ),
-          ),
+          disabled: !notSelectedYet && !isSelected,
         );
       }),
     );
