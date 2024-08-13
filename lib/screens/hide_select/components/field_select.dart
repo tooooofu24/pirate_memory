@@ -6,15 +6,15 @@ import 'package:pirate_memory/models/field.dart';
 class FieldSelect extends StatelessWidget {
   const FieldSelect({
     required this.fields,
-    required this.selectedIndex,
-    required this.onSelect,
-    required this.primaryColor,
+    this.selectedIndex,
+    this.onSelect,
+    this.primaryColor = Colors.blue,
     super.key,
   });
 
   final List<Field> fields;
   final int? selectedIndex;
-  final void Function(int) onSelect;
+  final void Function(int)? onSelect;
   final Color primaryColor;
 
   @override
@@ -35,7 +35,7 @@ class FieldSelect extends StatelessWidget {
           image: Image.asset('assets/island.png'),
           primaryColor: primaryColor,
           isSelected: isSelected,
-          onTap: () => onSelect(index),
+          onTap: () => onSelect?.call(index),
           disabled: !notSelectedYet && !isSelected,
         );
       }),

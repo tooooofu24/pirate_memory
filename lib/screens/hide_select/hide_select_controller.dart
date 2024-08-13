@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pirate_memory/notifiers/game_notifier.dart';
 import 'package:pirate_memory/screens/hide_select/hide_select_state.dart';
 import 'package:pirate_memory/screens/player_confirm/player_confirm_screen.dart';
+import 'package:pirate_memory/screens/search/search_screen.dart';
 
 final hideSelectProvider =
     StateNotifierProvider<HideSelectController, HideSelectState>(
@@ -46,8 +47,8 @@ class HideSelectController extends StateNotifier<HideSelectState> {
     if (ref.watch(gameProvider).currentPlayer!.cards.isEmpty) {
       await Navigator.pushReplacement(
         context,
-        MaterialPageRoute<PlayerConfirmScreen>(
-          builder: (context) => const PlayerConfirmScreen(),
+        MaterialPageRoute<SearchScreen>(
+          builder: (context) => const SearchScreen(),
         ),
       );
       return;
