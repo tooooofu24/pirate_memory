@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:pirate_memory/components/card.dart';
+import 'package:pirate_memory/components/stack_cards.dart';
 import 'package:pirate_memory/models/field.dart';
 
 class FieldSelect extends StatelessWidget {
@@ -31,12 +31,10 @@ class FieldSelect extends StatelessWidget {
       shrinkWrap: true,
       children: List.generate(fields.length, (index) {
         final isSelected = selectedIndex == index;
-        return CardWidget(
-          image: Image.asset('assets/island.png'),
-          primaryColor: primaryColor,
+        return StackCards(
+          cards: fields[index].cards,
           isSelected: isSelected,
           onTap: () => onSelect?.call(index),
-          disabled: !notSelectedYet && !isSelected,
         );
       }),
     );
