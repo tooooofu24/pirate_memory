@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pirate_memory/models/field.dart';
+import 'package:pirate_memory/models/player_color.dart';
+import 'package:pirate_memory/notifiers/game_notifier.dart';
 import 'package:pirate_memory/screens/hide_select/components/field_select.dart';
 
 class SearchScreen extends ConsumerWidget {
@@ -8,6 +9,8 @@ class SearchScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final game = ref.watch(gameProvider);
+
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
@@ -24,10 +27,13 @@ class SearchScreen extends ConsumerWidget {
                     crossAxisCount: 4,
                     shrinkWrap: true,
                     children: [
-                      ...List.generate(4, (index) {
+                      ...List.generate(game.players.length, (index) {
                         return Column(
                           children: [
-                            Image.asset('assets/pirate-blue.png', width: 60),
+                            Image.asset(
+                              PlayerColor.values[index].pirateImage,
+                              width: 60,
+                            ),
                             const Text('100'),
                           ],
                         );
@@ -38,12 +44,7 @@ class SearchScreen extends ConsumerWidget {
                     height: 30,
                   ),
                   FieldSelect(
-                    fields: List.generate(
-                      12,
-                      (index) => Field(
-                        cards: [],
-                      ),
-                    ),
+                    fields: game.fields,
                   ),
                   const Spacer(),
                   SizedBox(

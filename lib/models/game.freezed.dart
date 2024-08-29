@@ -16,12 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Game {
-  int get turnCount => throw _privateConstructorUsedError;
   List<Field> get fields => throw _privateConstructorUsedError;
   List<Player> get players => throw _privateConstructorUsedError;
   Player? get currentPlayer => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Game
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GameCopyWith<Game> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -30,11 +31,7 @@ abstract class $GameCopyWith<$Res> {
   factory $GameCopyWith(Game value, $Res Function(Game) then) =
       _$GameCopyWithImpl<$Res, Game>;
   @useResult
-  $Res call(
-      {int turnCount,
-      List<Field> fields,
-      List<Player> players,
-      Player? currentPlayer});
+  $Res call({List<Field> fields, List<Player> players, Player? currentPlayer});
 
   $PlayerCopyWith<$Res>? get currentPlayer;
 }
@@ -49,19 +46,16 @@ class _$GameCopyWithImpl<$Res, $Val extends Game>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Game
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? turnCount = null,
     Object? fields = null,
     Object? players = null,
     Object? currentPlayer = freezed,
   }) {
     return _then(_value.copyWith(
-      turnCount: null == turnCount
-          ? _value.turnCount
-          : turnCount // ignore: cast_nullable_to_non_nullable
-              as int,
       fields: null == fields
           ? _value.fields
           : fields // ignore: cast_nullable_to_non_nullable
@@ -77,6 +71,8 @@ class _$GameCopyWithImpl<$Res, $Val extends Game>
     ) as $Val);
   }
 
+  /// Create a copy of Game
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PlayerCopyWith<$Res>? get currentPlayer {
@@ -97,11 +93,7 @@ abstract class _$$GameImplCopyWith<$Res> implements $GameCopyWith<$Res> {
       __$$GameImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int turnCount,
-      List<Field> fields,
-      List<Player> players,
-      Player? currentPlayer});
+  $Res call({List<Field> fields, List<Player> players, Player? currentPlayer});
 
   @override
   $PlayerCopyWith<$Res>? get currentPlayer;
@@ -114,19 +106,16 @@ class __$$GameImplCopyWithImpl<$Res>
   __$$GameImplCopyWithImpl(_$GameImpl _value, $Res Function(_$GameImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Game
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? turnCount = null,
     Object? fields = null,
     Object? players = null,
     Object? currentPlayer = freezed,
   }) {
     return _then(_$GameImpl(
-      turnCount: null == turnCount
-          ? _value.turnCount
-          : turnCount // ignore: cast_nullable_to_non_nullable
-              as int,
       fields: null == fields
           ? _value._fields
           : fields // ignore: cast_nullable_to_non_nullable
@@ -147,16 +136,12 @@ class __$$GameImplCopyWithImpl<$Res>
 
 class _$GameImpl implements _Game {
   _$GameImpl(
-      {this.turnCount = 0,
-      final List<Field> fields = const [],
+      {final List<Field> fields = const [],
       final List<Player> players = const [],
       this.currentPlayer})
       : _fields = fields,
         _players = players;
 
-  @override
-  @JsonKey()
-  final int turnCount;
   final List<Field> _fields;
   @override
   @JsonKey()
@@ -180,7 +165,7 @@ class _$GameImpl implements _Game {
 
   @override
   String toString() {
-    return 'Game(turnCount: $turnCount, fields: $fields, players: $players, currentPlayer: $currentPlayer)';
+    return 'Game(fields: $fields, players: $players, currentPlayer: $currentPlayer)';
   }
 
   @override
@@ -188,8 +173,6 @@ class _$GameImpl implements _Game {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GameImpl &&
-            (identical(other.turnCount, turnCount) ||
-                other.turnCount == turnCount) &&
             const DeepCollectionEquality().equals(other._fields, _fields) &&
             const DeepCollectionEquality().equals(other._players, _players) &&
             (identical(other.currentPlayer, currentPlayer) ||
@@ -199,12 +182,13 @@ class _$GameImpl implements _Game {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      turnCount,
       const DeepCollectionEquality().hash(_fields),
       const DeepCollectionEquality().hash(_players),
       currentPlayer);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Game
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GameImplCopyWith<_$GameImpl> get copyWith =>
@@ -213,21 +197,21 @@ class _$GameImpl implements _Game {
 
 abstract class _Game implements Game {
   factory _Game(
-      {final int turnCount,
-      final List<Field> fields,
+      {final List<Field> fields,
       final List<Player> players,
       final Player? currentPlayer}) = _$GameImpl;
 
-  @override
-  int get turnCount;
   @override
   List<Field> get fields;
   @override
   List<Player> get players;
   @override
   Player? get currentPlayer;
+
+  /// Create a copy of Game
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GameImplCopyWith<_$GameImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

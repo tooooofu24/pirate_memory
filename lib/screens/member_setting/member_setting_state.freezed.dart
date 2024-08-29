@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MemberSettingState {
   List<Player> get players => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MemberSettingState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MemberSettingStateCopyWith<MemberSettingState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,6 +44,8 @@ class _$MemberSettingStateCopyWithImpl<$Res, $Val extends MemberSettingState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MemberSettingState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +79,8 @@ class __$$MemberSettingStateImplCopyWithImpl<$Res>
       $Res Function(_$MemberSettingStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MemberSettingState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -121,7 +127,9 @@ class _$MemberSettingStateImpl implements _MemberSettingState {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_players));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MemberSettingState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MemberSettingStateImplCopyWith<_$MemberSettingStateImpl> get copyWith =>
@@ -135,8 +143,11 @@ abstract class _MemberSettingState implements MemberSettingState {
 
   @override
   List<Player> get players;
+
+  /// Create a copy of MemberSettingState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MemberSettingStateImplCopyWith<_$MemberSettingStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

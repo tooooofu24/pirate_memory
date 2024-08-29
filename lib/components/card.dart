@@ -30,7 +30,9 @@ class CardWidget extends StatelessWidget {
                   color: primaryColor,
                   width: 6,
                 )
-              : null,
+              : Border.all(
+                  color: Colors.grey,
+                ),
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),

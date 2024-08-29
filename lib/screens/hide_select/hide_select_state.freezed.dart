@@ -19,7 +19,9 @@ mixin _$HideSelectState {
   int? get selectedFieldIndex => throw _privateConstructorUsedError;
   int? get selectedCardIndex => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HideSelectState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HideSelectStateCopyWith<HideSelectState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -43,6 +45,8 @@ class _$HideSelectStateCopyWithImpl<$Res, $Val extends HideSelectState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HideSelectState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +85,8 @@ class __$$HideSelectStateImplCopyWithImpl<$Res>
       _$HideSelectStateImpl _value, $Res Function(_$HideSelectStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HideSelectState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -131,7 +137,9 @@ class _$HideSelectStateImpl extends _HideSelectState {
   int get hashCode =>
       Object.hash(runtimeType, selectedFieldIndex, selectedCardIndex);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HideSelectState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HideSelectStateImplCopyWith<_$HideSelectStateImpl> get copyWith =>
@@ -149,8 +157,11 @@ abstract class _HideSelectState extends HideSelectState {
   int? get selectedFieldIndex;
   @override
   int? get selectedCardIndex;
+
+  /// Create a copy of HideSelectState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HideSelectStateImplCopyWith<_$HideSelectStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

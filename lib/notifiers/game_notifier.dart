@@ -7,7 +7,8 @@ import 'package:pirate_memory/models/player.dart';
 import 'package:pirate_memory/models/player_color.dart';
 
 class GameNotifier extends StateNotifier<Game> {
-  GameNotifier() : super(Game(players: [], fields: []));
+  // GameNotifier() : super(Game(players: [], fields: []));
+  GameNotifier() : super(Game.mock());
 
   List<Card> _initialCards(PlayerColor color) {
     return [

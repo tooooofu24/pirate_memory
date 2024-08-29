@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Field {
   List<Card> get cards => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Field
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FieldCopyWith<Field> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -40,6 +42,8 @@ class _$FieldCopyWithImpl<$Res, $Val extends Field>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Field
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -72,6 +76,8 @@ class __$$FieldImplCopyWithImpl<$Res>
       _$FieldImpl _value, $Res Function(_$FieldImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Field
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -116,7 +122,9 @@ class _$FieldImpl implements _Field {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_cards));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Field
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FieldImplCopyWith<_$FieldImpl> get copyWith =>
@@ -128,8 +136,11 @@ abstract class _Field implements Field {
 
   @override
   List<Card> get cards;
+
+  /// Create a copy of Field
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FieldImplCopyWith<_$FieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
