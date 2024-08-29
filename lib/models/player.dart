@@ -10,5 +10,6 @@ class Player with _$Player {
     required PlayerColor color,
     @Default('') String name,
     @Default([]) List<Card> cards,
+    @Default(0) int searchCount,
   }) = _Player;
 }

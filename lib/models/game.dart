@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pirate_memory/models/card.dart';
 import 'package:pirate_memory/models/card_type.dart';
@@ -7,13 +9,20 @@ import 'package:pirate_memory/models/player_color.dart';
 
 part 'game.freezed.dart';
 
+// ランダムなカードの生成
+Random random = Random();
+
 List<Field> initialFields = [
   ...List.generate(
     12,
     (index) => Field(
       cards: List.generate(
-        index,
-        (index) => Card(color: PlayerColor.red, type: CardType.singleGem),
+        random.nextInt(6), // 0から4枚のランダムなカード数
+        (index) => Card(
+          color: PlayerColor.values[random.nextInt(2)], // ランダムな色
+          type: CardType
+              .values[random.nextInt(CardType.values.length)], // ランダムなタイプ
+        ),
       ),
     ),
   ),
@@ -21,10 +30,10 @@ List<Field> initialFields = [
 
 List<Player> initialPlayers = [
   Player(
-    color: PlayerColor.red,
+    color: PlayerColor.values[0],
   ),
   Player(
-    color: PlayerColor.blue,
+    color: PlayerColor.values[1],
   ),
 ];
 

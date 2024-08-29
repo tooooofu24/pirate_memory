@@ -28,7 +28,7 @@ class CardWidget extends StatelessWidget {
           border: isSelected
               ? Border.all(
                   color: primaryColor,
-                  width: 6,
+                  width: 4,
                 )
               : Border.all(
                   color: Colors.grey,

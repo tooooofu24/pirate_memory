@@ -19,6 +19,7 @@ mixin _$Player {
   PlayerColor get color => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<Card> get cards => throw _privateConstructorUsedError;
+  int get searchCount => throw _privateConstructorUsedError;
 
   /// Create a copy of Player
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +32,8 @@ abstract class $PlayerCopyWith<$Res> {
   factory $PlayerCopyWith(Player value, $Res Function(Player) then) =
       _$PlayerCopyWithImpl<$Res, Player>;
   @useResult
-  $Res call({PlayerColor color, String name, List<Card> cards});
+  $Res call(
+      {PlayerColor color, String name, List<Card> cards, int searchCount});
 }
 
 /// @nodoc
@@ -52,6 +54,7 @@ class _$PlayerCopyWithImpl<$Res, $Val extends Player>
     Object? color = null,
     Object? name = null,
     Object? cards = null,
+    Object? searchCount = null,
   }) {
     return _then(_value.copyWith(
       color: null == color
@@ -66,6 +69,10 @@ class _$PlayerCopyWithImpl<$Res, $Val extends Player>
           ? _value.cards
           : cards // ignore: cast_nullable_to_non_nullable
               as List<Card>,
+      searchCount: null == searchCount
+          ? _value.searchCount
+          : searchCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -77,7 +84,8 @@ abstract class _$$PlayerImplCopyWith<$Res> implements $PlayerCopyWith<$Res> {
       __$$PlayerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PlayerColor color, String name, List<Card> cards});
+  $Res call(
+      {PlayerColor color, String name, List<Card> cards, int searchCount});
 }
 
 /// @nodoc
@@ -96,6 +104,7 @@ class __$$PlayerImplCopyWithImpl<$Res>
     Object? color = null,
     Object? name = null,
     Object? cards = null,
+    Object? searchCount = null,
   }) {
     return _then(_$PlayerImpl(
       color: null == color
@@ -110,6 +119,10 @@ class __$$PlayerImplCopyWithImpl<$Res>
           ? _value._cards
           : cards // ignore: cast_nullable_to_non_nullable
               as List<Card>,
+      searchCount: null == searchCount
+          ? _value.searchCount
+          : searchCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -118,7 +131,10 @@ class __$$PlayerImplCopyWithImpl<$Res>
 
 class _$PlayerImpl implements _Player {
   _$PlayerImpl(
-      {required this.color, this.name = '', final List<Card> cards = const []})
+      {required this.color,
+      this.name = '',
+      final List<Card> cards = const [],
+      this.searchCount = 0})
       : _cards = cards;
 
   @override
@@ -136,8 +152,12 @@ class _$PlayerImpl implements _Player {
   }
 
   @override
+  @JsonKey()
+  final int searchCount;
+
+  @override
   String toString() {
-    return 'Player(color: $color, name: $name, cards: $cards)';
+    return 'Player(color: $color, name: $name, cards: $cards, searchCount: $searchCount)';
   }
 
   @override
@@ -147,12 +167,14 @@ class _$PlayerImpl implements _Player {
             other is _$PlayerImpl &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other._cards, _cards));
+            const DeepCollectionEquality().equals(other._cards, _cards) &&
+            (identical(other.searchCount, searchCount) ||
+                other.searchCount == searchCount));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, color, name, const DeepCollectionEquality().hash(_cards));
+  int get hashCode => Object.hash(runtimeType, color, name,
+      const DeepCollectionEquality().hash(_cards), searchCount);
 
   /// Create a copy of Player
   /// with the given fields replaced by the non-null parameter values.
@@ -167,7 +189,8 @@ abstract class _Player implements Player {
   factory _Player(
       {required final PlayerColor color,
       final String name,
-      final List<Card> cards}) = _$PlayerImpl;
+      final List<Card> cards,
+      final int searchCount}) = _$PlayerImpl;
 
   @override
   PlayerColor get color;
@@ -175,6 +198,8 @@ abstract class _Player implements Player {
   String get name;
   @override
   List<Card> get cards;
+  @override
+  int get searchCount;
 
   /// Create a copy of Player
   /// with the given fields replaced by the non-null parameter values.
