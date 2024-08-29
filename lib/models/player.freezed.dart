@@ -20,6 +20,7 @@ mixin _$Player {
   String get name => throw _privateConstructorUsedError;
   List<Card> get cards => throw _privateConstructorUsedError;
   int get searchCount => throw _privateConstructorUsedError;
+  int get point => throw _privateConstructorUsedError;
 
   /// Create a copy of Player
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,11 @@ abstract class $PlayerCopyWith<$Res> {
       _$PlayerCopyWithImpl<$Res, Player>;
   @useResult
   $Res call(
-      {PlayerColor color, String name, List<Card> cards, int searchCount});
+      {PlayerColor color,
+      String name,
+      List<Card> cards,
+      int searchCount,
+      int point});
 }
 
 /// @nodoc
@@ -55,6 +60,7 @@ class _$PlayerCopyWithImpl<$Res, $Val extends Player>
     Object? name = null,
     Object? cards = null,
     Object? searchCount = null,
+    Object? point = null,
   }) {
     return _then(_value.copyWith(
       color: null == color
@@ -73,6 +79,10 @@ class _$PlayerCopyWithImpl<$Res, $Val extends Player>
           ? _value.searchCount
           : searchCount // ignore: cast_nullable_to_non_nullable
               as int,
+      point: null == point
+          ? _value.point
+          : point // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -85,7 +95,11 @@ abstract class _$$PlayerImplCopyWith<$Res> implements $PlayerCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {PlayerColor color, String name, List<Card> cards, int searchCount});
+      {PlayerColor color,
+      String name,
+      List<Card> cards,
+      int searchCount,
+      int point});
 }
 
 /// @nodoc
@@ -105,6 +119,7 @@ class __$$PlayerImplCopyWithImpl<$Res>
     Object? name = null,
     Object? cards = null,
     Object? searchCount = null,
+    Object? point = null,
   }) {
     return _then(_$PlayerImpl(
       color: null == color
@@ -123,6 +138,10 @@ class __$$PlayerImplCopyWithImpl<$Res>
           ? _value.searchCount
           : searchCount // ignore: cast_nullable_to_non_nullable
               as int,
+      point: null == point
+          ? _value.point
+          : point // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -134,7 +153,8 @@ class _$PlayerImpl implements _Player {
       {required this.color,
       this.name = '',
       final List<Card> cards = const [],
-      this.searchCount = 0})
+      this.searchCount = 0,
+      this.point = 0})
       : _cards = cards;
 
   @override
@@ -154,10 +174,13 @@ class _$PlayerImpl implements _Player {
   @override
   @JsonKey()
   final int searchCount;
+  @override
+  @JsonKey()
+  final int point;
 
   @override
   String toString() {
-    return 'Player(color: $color, name: $name, cards: $cards, searchCount: $searchCount)';
+    return 'Player(color: $color, name: $name, cards: $cards, searchCount: $searchCount, point: $point)';
   }
 
   @override
@@ -169,12 +192,13 @@ class _$PlayerImpl implements _Player {
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._cards, _cards) &&
             (identical(other.searchCount, searchCount) ||
-                other.searchCount == searchCount));
+                other.searchCount == searchCount) &&
+            (identical(other.point, point) || other.point == point));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, color, name,
-      const DeepCollectionEquality().hash(_cards), searchCount);
+      const DeepCollectionEquality().hash(_cards), searchCount, point);
 
   /// Create a copy of Player
   /// with the given fields replaced by the non-null parameter values.
@@ -190,7 +214,8 @@ abstract class _Player implements Player {
       {required final PlayerColor color,
       final String name,
       final List<Card> cards,
-      final int searchCount}) = _$PlayerImpl;
+      final int searchCount,
+      final int point}) = _$PlayerImpl;
 
   @override
   PlayerColor get color;
@@ -200,6 +225,8 @@ abstract class _Player implements Player {
   List<Card> get cards;
   @override
   int get searchCount;
+  @override
+  int get point;
 
   /// Create a copy of Player
   /// with the given fields replaced by the non-null parameter values.

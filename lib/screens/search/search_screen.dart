@@ -37,7 +37,7 @@ class SearchScreen extends ConsumerWidget {
                               PlayerColor.values[index].pirateImage,
                               width: 60,
                             ),
-                            const Text('100'),
+                            Text(game.players[index].point.toString()),
                           ],
                         );
                       }),

@@ -7,11 +7,13 @@ class SearchDialog extends StatelessWidget {
   const SearchDialog({
     this.onPressed,
     this.cards = const [],
+    this.point = 0,
     super.key,
   });
 
   final VoidCallback? onPressed;
   final List<pirate_memory_card.Card> cards;
+  final int point;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class SearchDialog extends StatelessWidget {
                   .toList(),
             ),
             const SizedBox(height: 15),
-            const Text('獲得点数：'),
+            Text('獲得点数：$point'),
             const SizedBox(height: 15),
             SizedBox(
               width: double.infinity,
@@ -59,5 +61,6 @@ class SearchDialog extends StatelessWidget {
     properties
         .add(ObjectFlagProperty<VoidCallback?>.has('onPressed', onPressed));
     properties.add(IterableProperty<pirate_memory_card.Card>('cards', cards));
+    properties.add(IntProperty('point', point));
   }
 }

@@ -121,6 +121,68 @@ class GameNotifier extends StateNotifier<Game> {
     final nextPlayerIndex = (currentPlayerIndex + 1) % state.players.length;
     state = state.copyWith(currentPlayer: state.players[nextPlayerIndex]);
   }
+
+  void search(int fieldIndex) {
+    final field = state.fields[fieldIndex];
+    final cards = field.cards;
+    final point = calculatePoint(cards);
+    final currentPlayer = state.currentPlayer!;
+    final newPlayer = currentPlayer.copyWith(
+      searchCount: currentPlayer.searchCount + 1,
+      point: currentPlayer.point + point,
+    );
+    state = state.copyWith(
+      currentPlayer: newPlayer,
+      players: [
+        for (final player in state.players)
+          if (player.color == currentPlayer.color) newPlayer else player,
+      ],
+    );
+    // フィールドをクリア
+    _clearField(fieldIndex);
+    // 次のプレイヤーに交代
+    _turnToNextPlayer();
+  }
+
+  void _clearField(int fieldIndex) {
+    final newFields = List<Field>.from(state.fields);
+    newFields[fieldIndex] = Field(cards: []);
+    state = state.copyWith(fields: newFields);
+  }
+
+  int calculatePoint(List<Card> cards) {
+    var total = 0;
+    final includesBomb = cards.any((card) => card.type == CardType.bomb);
+    for (final color in PlayerColor.values) {
+      final isCurrentPlayerColor = state.currentPlayer!.color == color;
+      // 自分の色のカードは得点計算しない
+      if (isCurrentPlayerColor) {
+        continue;
+      }
+      final point = _calculatePointByColor(cards, color);
+      final includesTreasureBox = cards.any(
+        (card) => card.color == color && card.type == CardType.treasureBox,
+      );
+      // 宝箱カードがある && 宝箱カードがない => 得点なし
+      if (includesTreasureBox && !includesBomb) {
+        continue;
+      }
+      // 得点を加算
+      total += point;
+    }
+    return total;
+  }
+
+  int _calculatePointByColor(List<Card> cards, PlayerColor color) {
+    final filteredCards = cards.where((card) => card.color == color);
+    if (filteredCards.isEmpty) {
+      return 0;
+    }
+    final point = filteredCards
+        .map((card) => card.type.point)
+        .reduce((value, element) => value + element);
+    return point;
+  }
 }
 
 final gameProvider = StateNotifierProvider<GameNotifier, Game>((ref) {

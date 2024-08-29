@@ -29,12 +29,18 @@ class SearchController extends StateNotifier<SearchState> {
     }
     final fields = ref.watch(gameProvider).fields;
     final cards = fields[state.selectedFieldIndex!].cards;
+    final point = ref.read(gameProvider.notifier).calculatePoint(cards);
 
     await showDialog<String>(
       context: context,
       builder: (context) => SearchDialog(
-        onPressed: () => Navigator.pop(context),
+        onPressed: () {
+          ref.read(gameProvider.notifier).search(state.selectedFieldIndex!);
+          state = state.copyWith(selectedFieldIndex: null);
+          Navigator.pop(context);
+        },
         cards: cards,
+        point: point,
       ),
     );
   }

@@ -11,5 +11,6 @@ class Player with _$Player {
     @Default('') String name,
     @Default([]) List<Card> cards,
     @Default(0) int searchCount,
+    @Default(0) int point,
   }) = _Player;
 }
