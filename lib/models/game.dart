@@ -31,9 +31,11 @@ List<Field> initialFields = [
 List<Player> initialPlayers = [
   Player(
     color: PlayerColor.values[0],
+    name: 'とうや',
   ),
   Player(
     color: PlayerColor.values[1],
+    name: 'ひであき',
   ),
 ];
 
@@ -43,6 +45,7 @@ class Game with _$Game {
     @Default([]) List<Field> fields,
     @Default([]) List<Player> players,
     Player? currentPlayer,
+    @Default(false) bool isBonusPhase,
   }) = _Game;
 
   factory Game.mock() => Game(

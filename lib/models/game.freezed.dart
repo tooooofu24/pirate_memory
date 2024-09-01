@@ -19,6 +19,7 @@ mixin _$Game {
   List<Field> get fields => throw _privateConstructorUsedError;
   List<Player> get players => throw _privateConstructorUsedError;
   Player? get currentPlayer => throw _privateConstructorUsedError;
+  bool get isBonusPhase => throw _privateConstructorUsedError;
 
   /// Create a copy of Game
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +32,11 @@ abstract class $GameCopyWith<$Res> {
   factory $GameCopyWith(Game value, $Res Function(Game) then) =
       _$GameCopyWithImpl<$Res, Game>;
   @useResult
-  $Res call({List<Field> fields, List<Player> players, Player? currentPlayer});
+  $Res call(
+      {List<Field> fields,
+      List<Player> players,
+      Player? currentPlayer,
+      bool isBonusPhase});
 
   $PlayerCopyWith<$Res>? get currentPlayer;
 }
@@ -54,6 +59,7 @@ class _$GameCopyWithImpl<$Res, $Val extends Game>
     Object? fields = null,
     Object? players = null,
     Object? currentPlayer = freezed,
+    Object? isBonusPhase = null,
   }) {
     return _then(_value.copyWith(
       fields: null == fields
@@ -68,6 +74,10 @@ class _$GameCopyWithImpl<$Res, $Val extends Game>
           ? _value.currentPlayer
           : currentPlayer // ignore: cast_nullable_to_non_nullable
               as Player?,
+      isBonusPhase: null == isBonusPhase
+          ? _value.isBonusPhase
+          : isBonusPhase // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -93,7 +103,11 @@ abstract class _$$GameImplCopyWith<$Res> implements $GameCopyWith<$Res> {
       __$$GameImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Field> fields, List<Player> players, Player? currentPlayer});
+  $Res call(
+      {List<Field> fields,
+      List<Player> players,
+      Player? currentPlayer,
+      bool isBonusPhase});
 
   @override
   $PlayerCopyWith<$Res>? get currentPlayer;
@@ -114,6 +128,7 @@ class __$$GameImplCopyWithImpl<$Res>
     Object? fields = null,
     Object? players = null,
     Object? currentPlayer = freezed,
+    Object? isBonusPhase = null,
   }) {
     return _then(_$GameImpl(
       fields: null == fields
@@ -128,6 +143,10 @@ class __$$GameImplCopyWithImpl<$Res>
           ? _value.currentPlayer
           : currentPlayer // ignore: cast_nullable_to_non_nullable
               as Player?,
+      isBonusPhase: null == isBonusPhase
+          ? _value.isBonusPhase
+          : isBonusPhase // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -138,7 +157,8 @@ class _$GameImpl implements _Game {
   _$GameImpl(
       {final List<Field> fields = const [],
       final List<Player> players = const [],
-      this.currentPlayer})
+      this.currentPlayer,
+      this.isBonusPhase = false})
       : _fields = fields,
         _players = players;
 
@@ -162,10 +182,13 @@ class _$GameImpl implements _Game {
 
   @override
   final Player? currentPlayer;
+  @override
+  @JsonKey()
+  final bool isBonusPhase;
 
   @override
   String toString() {
-    return 'Game(fields: $fields, players: $players, currentPlayer: $currentPlayer)';
+    return 'Game(fields: $fields, players: $players, currentPlayer: $currentPlayer, isBonusPhase: $isBonusPhase)';
   }
 
   @override
@@ -176,7 +199,9 @@ class _$GameImpl implements _Game {
             const DeepCollectionEquality().equals(other._fields, _fields) &&
             const DeepCollectionEquality().equals(other._players, _players) &&
             (identical(other.currentPlayer, currentPlayer) ||
-                other.currentPlayer == currentPlayer));
+                other.currentPlayer == currentPlayer) &&
+            (identical(other.isBonusPhase, isBonusPhase) ||
+                other.isBonusPhase == isBonusPhase));
   }
 
   @override
@@ -184,7 +209,8 @@ class _$GameImpl implements _Game {
       runtimeType,
       const DeepCollectionEquality().hash(_fields),
       const DeepCollectionEquality().hash(_players),
-      currentPlayer);
+      currentPlayer,
+      isBonusPhase);
 
   /// Create a copy of Game
   /// with the given fields replaced by the non-null parameter values.
@@ -199,7 +225,8 @@ abstract class _Game implements Game {
   factory _Game(
       {final List<Field> fields,
       final List<Player> players,
-      final Player? currentPlayer}) = _$GameImpl;
+      final Player? currentPlayer,
+      final bool isBonusPhase}) = _$GameImpl;
 
   @override
   List<Field> get fields;
@@ -207,6 +234,8 @@ abstract class _Game implements Game {
   List<Player> get players;
   @override
   Player? get currentPlayer;
+  @override
+  bool get isBonusPhase;
 
   /// Create a copy of Game
   /// with the given fields replaced by the non-null parameter values.

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pirate_memory/screens/search/search_screen.dart';
+import 'package:pirate_memory/screens/result/result_screen.dart';
 
 void main() {
   runApp(
@@ -18,7 +18,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: 'パイレーツメモリー',
       theme: ThemeData(useMaterial3: true),
-      home: const SearchScreen(),
+      home: const ResultScreen(),
     );
   }
 }

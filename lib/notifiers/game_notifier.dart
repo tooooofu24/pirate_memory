@@ -142,6 +142,10 @@ class GameNotifier extends StateNotifier<Game> {
     _clearField(fieldIndex);
     // 次のプレイヤーに交代
     _turnToNextPlayer();
+    // 全員が3回探したらボーナスフェーズに移行
+    if (currentPlayer.searchCount == 3) {
+      state = state.copyWith(isBonusPhase: true);
+    }
   }
 
   void _clearField(int fieldIndex) {
@@ -159,7 +163,7 @@ class GameNotifier extends StateNotifier<Game> {
       if (isCurrentPlayerColor) {
         continue;
       }
-      final point = _calculatePointByColor(cards, color);
+      final point = calculatePointByColor(cards, color);
       final includesTreasureBox = cards.any(
         (card) => card.color == color && card.type == CardType.treasureBox,
       );
@@ -173,7 +177,29 @@ class GameNotifier extends StateNotifier<Game> {
     return total;
   }
 
-  int _calculatePointByColor(List<Card> cards, PlayerColor color) {
+  void getBonusPoint(List<Card> cards) {
+    // 爆弾カードがあるかどうか
+    final includesBomb = cards.any((card) => card.type == CardType.bomb);
+    // 宝箱カードがあるかどうか
+    final includesTreasureBox =
+        cards.any((card) => card.type == CardType.treasureBox);
+    // 宝箱カードがある && 宝箱カードがない => 得点なし
+    if (includesTreasureBox && !includesBomb) {
+      return;
+    }
+    // 残っている自分のカードの2倍の得点を加算
+    state = state.copyWith(
+      players: [
+        for (final player in state.players)
+          player.copyWith(
+            point:
+                player.point + (calculatePointByColor(cards, player.color) * 2),
+          ),
+      ],
+    );
+  }
+
+  int calculatePointByColor(List<Card> cards, PlayerColor color) {
     final filteredCards = cards.where((card) => card.color == color);
     if (filteredCards.isEmpty) {
       return 0;

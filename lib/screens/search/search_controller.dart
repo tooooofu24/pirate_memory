@@ -27,9 +27,27 @@ class SearchController extends StateNotifier<SearchState> {
     if (state.selectedFieldIndex == null) {
       return;
     }
-    final fields = ref.watch(gameProvider).fields;
+    final game = ref.watch(gameProvider);
+    final fields = game.fields;
     final cards = fields[state.selectedFieldIndex!].cards;
-    final point = ref.read(gameProvider.notifier).calculatePoint(cards);
+
+    final result = <String, int>{};
+
+    if (game.isBonusPhase) {
+      for (final player in game.players) {
+        result.addAll({
+          player.name: ref
+                  .read(gameProvider.notifier)
+                  .calculatePointByColor(cards, player.color) *
+              2,
+        });
+      }
+    } else {
+      result.addAll({
+        game.currentPlayer!.name:
+            ref.read(gameProvider.notifier).calculatePoint(cards),
+      });
+    }
 
     await showDialog<String>(
       context: context,
@@ -40,7 +58,7 @@ class SearchController extends StateNotifier<SearchState> {
           Navigator.pop(context);
         },
         cards: cards,
-        point: point,
+        result: result,
       ),
     );
   }

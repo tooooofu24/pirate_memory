@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pirate_memory/components/card.dart';
 import 'package:pirate_memory/models/player_color.dart';
 import 'package:pirate_memory/notifiers/game_notifier.dart';
 import 'package:pirate_memory/screens/hide_select/components/field_select.dart';
@@ -33,9 +34,11 @@ class SearchScreen extends ConsumerWidget {
                       ...List.generate(game.players.length, (index) {
                         return Column(
                           children: [
-                            Image.asset(
-                              PlayerColor.values[index].pirateImage,
-                              width: 60,
+                            CardWidget(
+                              image: Image.asset(
+                                PlayerColor.values[index].pirateImage,
+                                width: 60,
+                              ),
                             ),
                             Text(game.players[index].point.toString()),
                           ],
@@ -43,6 +46,15 @@ class SearchScreen extends ConsumerWidget {
                       }),
                     ],
                   ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  if (game.isBonusPhase)
+                    const Text('ボーナスフェーズ')
+                  else
+                    Text(
+                      '${game.currentPlayer?.name}の番です',
+                    ),
                   const SizedBox(
                     height: 30,
                   ),
