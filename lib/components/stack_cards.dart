@@ -20,32 +20,44 @@ class StackCards extends StatelessWidget {
     if (cards.isEmpty) {
       return InkWell(
         onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 10, right: 10),
-          child: CardWidget(
-            image: Image.asset('assets/island.png'),
-            isSelected: isSelected,
-            onTap: onTap,
-          ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, right: 5),
+              child: Align(
+                child: Transform.translate(
+                  offset: Offset.zero,
+                  child: CardWidget(
+                    image: Image.asset('assets/island.png'),
+                    isSelected: isSelected,
+                    onTap: onTap,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       );
     }
 
     // オフセットをカードの枚数に応じて動的に計算
-    final offsetBase = 10.0 / cards.length;
+    final offsetBase = 8.0 / cards.length;
 
     return InkWell(
       onTap: onTap,
       child: Stack(
         children: [
           for (int i = 0; i < cards.length; i++)
-            Align(
-              child: Transform.translate(
-                offset: Offset(i * offsetBase, i * offsetBase),
-                child: CardWidget(
-                  image: Image.asset(cards[i].image),
-                  isSelected: isSelected,
-                  onTap: onTap,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, right: 5),
+              child: Align(
+                child: Transform.translate(
+                  offset: Offset(i * offsetBase, i * offsetBase),
+                  child: CardWidget(
+                    image: Image.asset('assets/card-back.png'),
+                    isSelected: isSelected,
+                    onTap: onTap,
+                  ),
                 ),
               ),
             ),
