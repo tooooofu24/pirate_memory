@@ -21,7 +21,7 @@ class FieldSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     final notSelectedYet = selectedIndex == null;
     // フィールドが9つの場合は3列、それ以外は4列で表示する
-    final crossAxisCount = fields.length == 9 ? 3 : 4;
+    const crossAxisCount = 4;
     return GridView.count(
       childAspectRatio: 3 / 4,
       physics: const NeverScrollableScrollPhysics(),

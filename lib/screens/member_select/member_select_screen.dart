@@ -25,7 +25,6 @@ class MemberSelectScreen extends ConsumerWidget {
                     const Text('プレイ人数を選択'),
                     DropdownButtonFormField(
                       hint: const Text('選択して下さい'),
-                      value: 3,
                       onChanged: controller.onChanged,
                       validator: controller.validatePlayerCount,
                       items: controller.options.entries

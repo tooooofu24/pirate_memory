@@ -47,18 +47,6 @@ class ResultScreen extends ConsumerWidget {
                   SizedBox(
                     width: double.infinity,
                     height: 50,
-                    child: FilledButton.tonal(
-                      onPressed: () async =>
-                          controller.restartGame(context, ref),
-                      child: const Text('もう一度やる'),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
                     child: FilledButton(
                       onPressed: () async => controller.goHome(context, ref),
                       child: const Text('TOPに戻る'),

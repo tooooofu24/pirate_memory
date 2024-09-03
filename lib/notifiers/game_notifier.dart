@@ -7,8 +7,8 @@ import 'package:pirate_memory/models/player.dart';
 import 'package:pirate_memory/models/player_color.dart';
 
 class GameNotifier extends StateNotifier<Game> {
-  // GameNotifier() : super(Game(players: [], fields: []));
-  GameNotifier() : super(Game.mock());
+  // GameNotifier() : super(Game.mock());
+  GameNotifier() : super(Game());
 
   List<Card> _initialCards(PlayerColor color) {
     return [
@@ -69,6 +69,7 @@ class GameNotifier extends StateNotifier<Game> {
       (index) => Player(
         color: PlayerColor.values[index],
         cards: _initialCards(PlayerColor.values[index]),
+        name: 'プレイヤー${index + 1}',
       ),
     );
     state = state.copyWith(
@@ -78,8 +79,11 @@ class GameNotifier extends StateNotifier<Game> {
     );
   }
 
-  void updatePlayers(List<Player> players) {
-    state = state.copyWith(players: players);
+  void updatePlayerName(int index, String name) {
+    final players = state.players;
+    final newPlayers = List<Player>.from(players);
+    newPlayers[index] = players[index].copyWith(name: name);
+    state = state.copyWith(players: newPlayers);
   }
 
   void hide(Card card, int fieldIndex) {
@@ -122,7 +126,7 @@ class GameNotifier extends StateNotifier<Game> {
     state = state.copyWith(currentPlayer: state.players[nextPlayerIndex]);
   }
 
-  void search(int fieldIndex) {
+  bool search(int fieldIndex) {
     final field = state.fields[fieldIndex];
     final cards = field.cards;
     final point = calculatePoint(cards);
@@ -146,6 +150,8 @@ class GameNotifier extends StateNotifier<Game> {
     if (currentPlayer.searchCount == 3) {
       state = state.copyWith(isBonusPhase: true);
     }
+    final isLastField = state.fields.every((field) => field.cards.isEmpty);
+    return isLastField;
   }
 
   void _clearField(int fieldIndex) {
@@ -211,7 +217,7 @@ class GameNotifier extends StateNotifier<Game> {
   }
 
   void reset() {
-    state = Game();
+    state = Game.mock();
   }
 }
 

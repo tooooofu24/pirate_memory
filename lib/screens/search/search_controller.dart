@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pirate_memory/notifiers/game_notifier.dart';
+import 'package:pirate_memory/screens/result/result_screen.dart';
 import 'package:pirate_memory/screens/search/components/search_dialog.dart';
 import 'package:pirate_memory/screens/search/search_state.dart';
 
@@ -52,10 +53,20 @@ class SearchController extends StateNotifier<SearchState> {
     await showDialog<String>(
       context: context,
       builder: (context) => SearchDialog(
-        onPressed: () {
-          ref.read(gameProvider.notifier).search(state.selectedFieldIndex!);
+        onPressed: () async {
+          final isLastField =
+              ref.read(gameProvider.notifier).search(state.selectedFieldIndex!);
           state = state.copyWith(selectedFieldIndex: null);
-          Navigator.pop(context);
+          if (isLastField) {
+            await Navigator.push(
+              context,
+              MaterialPageRoute<ResultScreen>(
+                builder: (context) => const ResultScreen(),
+              ),
+            );
+          } else {
+            Navigator.pop(context);
+          }
         },
         cards: cards,
         result: result,

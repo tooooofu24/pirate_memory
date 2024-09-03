@@ -21,7 +21,7 @@ class CardSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     final notSelectedYet = selectedIndex == null;
     return SizedBox(
-      height: 180,
+      height: 150,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: cards.length,

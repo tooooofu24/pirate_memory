@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MemberSettingState {
-  List<Player> get players => throw _privateConstructorUsedError;
+  List<String> get playerNames => throw _privateConstructorUsedError;
 
   /// Create a copy of MemberSettingState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +31,7 @@ abstract class $MemberSettingStateCopyWith<$Res> {
           MemberSettingState value, $Res Function(MemberSettingState) then) =
       _$MemberSettingStateCopyWithImpl<$Res, MemberSettingState>;
   @useResult
-  $Res call({List<Player> players});
+  $Res call({List<String> playerNames});
 }
 
 /// @nodoc
@@ -49,13 +49,13 @@ class _$MemberSettingStateCopyWithImpl<$Res, $Val extends MemberSettingState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? players = null,
+    Object? playerNames = null,
   }) {
     return _then(_value.copyWith(
-      players: null == players
-          ? _value.players
-          : players // ignore: cast_nullable_to_non_nullable
-              as List<Player>,
+      playerNames: null == playerNames
+          ? _value.playerNames
+          : playerNames // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -68,7 +68,7 @@ abstract class _$$MemberSettingStateImplCopyWith<$Res>
       __$$MemberSettingStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Player> players});
+  $Res call({List<String> playerNames});
 }
 
 /// @nodoc
@@ -84,13 +84,13 @@ class __$$MemberSettingStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? players = null,
+    Object? playerNames = null,
   }) {
     return _then(_$MemberSettingStateImpl(
-      players: null == players
-          ? _value._players
-          : players // ignore: cast_nullable_to_non_nullable
-              as List<Player>,
+      playerNames: null == playerNames
+          ? _value._playerNames
+          : playerNames // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -98,21 +98,21 @@ class __$$MemberSettingStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MemberSettingStateImpl implements _MemberSettingState {
-  const _$MemberSettingStateImpl({final List<Player> players = const []})
-      : _players = players;
+  const _$MemberSettingStateImpl({final List<String> playerNames = const []})
+      : _playerNames = playerNames;
 
-  final List<Player> _players;
+  final List<String> _playerNames;
   @override
   @JsonKey()
-  List<Player> get players {
-    if (_players is EqualUnmodifiableListView) return _players;
+  List<String> get playerNames {
+    if (_playerNames is EqualUnmodifiableListView) return _playerNames;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_players);
+    return EqualUnmodifiableListView(_playerNames);
   }
 
   @override
   String toString() {
-    return 'MemberSettingState(players: $players)';
+    return 'MemberSettingState(playerNames: $playerNames)';
   }
 
   @override
@@ -120,12 +120,13 @@ class _$MemberSettingStateImpl implements _MemberSettingState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MemberSettingStateImpl &&
-            const DeepCollectionEquality().equals(other._players, _players));
+            const DeepCollectionEquality()
+                .equals(other._playerNames, _playerNames));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_players));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_playerNames));
 
   /// Create a copy of MemberSettingState
   /// with the given fields replaced by the non-null parameter values.
@@ -138,11 +139,11 @@ class _$MemberSettingStateImpl implements _MemberSettingState {
 }
 
 abstract class _MemberSettingState implements MemberSettingState {
-  const factory _MemberSettingState({final List<Player> players}) =
+  const factory _MemberSettingState({final List<String> playerNames}) =
       _$MemberSettingStateImpl;
 
   @override
-  List<Player> get players;
+  List<String> get playerNames;
 
   /// Create a copy of MemberSettingState
   /// with the given fields replaced by the non-null parameter values.

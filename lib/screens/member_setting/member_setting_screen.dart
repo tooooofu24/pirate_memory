@@ -38,9 +38,11 @@ class MemberSettingScreen extends ConsumerWidget {
                               image: AssetImage(player.color.pirateImage),
                             ),
                             title: TextFormField(
-                              onChanged: (value) => {},
+                              // onChanged: (value) => controller
+                              //     .onChangePlayerName(ref, index, value),
+                              readOnly: true,
+                              initialValue: player.name,
                               validator: controller.validatePlayerName,
-                              initialValue: 'プレイヤー${player.color.label}',
                               decoration: InputDecoration(
                                 hintText: '名前を入力して下さい',
                                 labelText: '${player.color.label}色の海賊',
