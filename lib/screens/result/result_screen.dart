@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pirate_memory/components/card.dart';
 import 'package:pirate_memory/models/player_color.dart';
 import 'package:pirate_memory/notifiers/game_notifier.dart';
+import 'package:pirate_memory/screens/result/result_controller.dart';
 
 class ResultScreen extends ConsumerWidget {
   const ResultScreen({super.key});
@@ -10,6 +11,8 @@ class ResultScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final game = ref.watch(gameProvider);
+
+    final controller = ResultController();
 
     return MaterialApp(
       home: Scaffold(
@@ -26,10 +29,13 @@ class ResultScreen extends ConsumerWidget {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CardWidget(
-                          image: Image.asset(
-                            PlayerColor.values[index].pirateImage,
-                            width: 70,
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: CardWidget(
+                            image: Image.asset(
+                              PlayerColor.values[index].pirateImage,
+                              width: 70,
+                            ),
                           ),
                         ),
                         const SizedBox(width: 30),
@@ -42,7 +48,8 @@ class ResultScreen extends ConsumerWidget {
                     width: double.infinity,
                     height: 50,
                     child: FilledButton.tonal(
-                      onPressed: () {},
+                      onPressed: () async =>
+                          controller.restartGame(context, ref),
                       child: const Text('もう一度やる'),
                     ),
                   ),
@@ -53,7 +60,7 @@ class ResultScreen extends ConsumerWidget {
                     width: double.infinity,
                     height: 50,
                     child: FilledButton(
-                      onPressed: () {},
+                      onPressed: () async => controller.goHome(context, ref),
                       child: const Text('TOPに戻る'),
                     ),
                   ),

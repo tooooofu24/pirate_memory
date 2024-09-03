@@ -209,6 +209,10 @@ class GameNotifier extends StateNotifier<Game> {
         .reduce((value, element) => value + element);
     return point;
   }
+
+  void reset() {
+    state = Game();
+  }
 }
 
 final gameProvider = StateNotifierProvider<GameNotifier, Game>((ref) {
