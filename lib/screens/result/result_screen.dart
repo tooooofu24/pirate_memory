@@ -14,8 +14,9 @@ class ResultScreen extends ConsumerWidget {
 
     final controller = ResultController();
 
-    return MaterialApp(
-      home: Scaffold(
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
         body: SafeArea(
           child: Center(
             child: FractionallySizedBox(

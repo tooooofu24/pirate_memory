@@ -8,8 +8,9 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = HomeController();
-    return MaterialApp(
-      home: Scaffold(
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
         body: Center(
           child: FractionallySizedBox(
             widthFactor: 0.7,

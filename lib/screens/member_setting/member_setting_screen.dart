@@ -9,12 +9,16 @@ class MemberSettingScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.read(memberSettingProvider.notifier);
     final game = ref.watch(gameProvider);
+    final playerNames = game.players.map((player) => player.name).toList();
+    final controller = ref.read(
+      memberSettingProvider(playerNames).notifier,
+    );
     final formKey = GlobalKey<FormState>();
 
-    return MaterialApp(
-      home: Scaffold(
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.only(bottom: 15),
           child: SafeArea(
@@ -38,10 +42,9 @@ class MemberSettingScreen extends ConsumerWidget {
                               image: AssetImage(player.color.pirateImage),
                             ),
                             title: TextFormField(
-                              // onChanged: (value) => controller
-                              //     .onChangePlayerName(ref, index, value),
-                              readOnly: true,
-                              initialValue: player.name,
+                              initialValue: playerNames[index],
+                              onChanged: (value) => controller
+                                  .onChangePlayerName(ref, index, value),
                               validator: controller.validatePlayerName,
                               decoration: InputDecoration(
                                 hintText: '名前を入力して下さい',

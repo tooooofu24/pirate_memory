@@ -79,10 +79,12 @@ class GameNotifier extends StateNotifier<Game> {
     );
   }
 
-  void updatePlayerName(int index, String name) {
+  void updatePlayerNames(List<String> names) {
     final players = state.players;
     final newPlayers = List<Player>.from(players);
-    newPlayers[index] = players[index].copyWith(name: name);
+    for (var i = 0; i < players.length; i++) {
+      newPlayers[i] = players[i].copyWith(name: names[i]);
+    }
     state = state.copyWith(players: newPlayers);
   }
 

@@ -10,8 +10,9 @@ class MemberSelectScreen extends ConsumerWidget {
     final controller = ref.read(memberSelectProvider.notifier);
     final formKey = GlobalKey<FormState>();
 
-    return MaterialApp(
-      home: Scaffold(
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
         body: SafeArea(
           child: Center(
             child: FractionallySizedBox(

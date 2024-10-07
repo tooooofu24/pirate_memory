@@ -13,8 +13,9 @@ class PlayerConfirmScreen extends ConsumerWidget {
     final game = ref.watch(gameProvider);
     final currentPlayer = game.currentPlayer;
 
-    return MaterialApp(
-      home: Scaffold(
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
         body: SafeArea(
           child: Center(
             child: FractionallySizedBox(

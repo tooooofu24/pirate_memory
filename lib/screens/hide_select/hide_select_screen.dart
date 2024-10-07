@@ -15,8 +15,9 @@ class HideSelectScreen extends ConsumerWidget {
     final controller = ref.read(hideSelectProvider.notifier);
     final state = ref.watch(hideSelectProvider);
 
-    return MaterialApp(
-      home: Scaffold(
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
         body: SafeArea(
           child: Center(
             child: FractionallySizedBox(

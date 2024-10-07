@@ -15,8 +15,9 @@ class SearchScreen extends ConsumerWidget {
     final controller = ref.read(searchProvider.notifier);
     final state = ref.watch(searchProvider);
 
-    return MaterialApp(
-      home: Scaffold(
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
         body: SafeArea(
           child: Center(
             child: FractionallySizedBox(
