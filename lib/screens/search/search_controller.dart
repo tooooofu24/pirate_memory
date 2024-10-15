@@ -56,8 +56,9 @@ class SearchController extends StateNotifier<SearchState> {
         onPressed: () async {
           final isLastField =
               ref.read(gameProvider.notifier).search(state.selectedFieldIndex!);
+          final isBonusPhase = game.isBonusPhase;
           state = state.copyWith(selectedFieldIndex: null);
-          if (isLastField) {
+          if (isLastField || isBonusPhase) {
             await Navigator.push(
               context,
               MaterialPageRoute<ResultScreen>(

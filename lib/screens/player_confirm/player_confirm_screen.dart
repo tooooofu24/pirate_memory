@@ -23,7 +23,7 @@ class PlayerConfirmScreen extends ConsumerWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('あなたは${currentPlayer!.color.label}色の海賊ですか？'),
+                  Text('あなたは${currentPlayer!.name}ですか？'),
                   const SizedBox(height: 50),
                   CardWidget(
                     image: Image(

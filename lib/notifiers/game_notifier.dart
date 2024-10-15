@@ -122,10 +122,15 @@ class GameNotifier extends StateNotifier<Game> {
   }
 
   void _turnToNextPlayer() {
+    final nextPlayer = _findNextPlayer();
+    state = state.copyWith(currentPlayer: nextPlayer);
+  }
+
+  Player _findNextPlayer() {
     final currentPlayer = state.currentPlayer!;
     final currentPlayerIndex = state.players.indexOf(currentPlayer);
     final nextPlayerIndex = (currentPlayerIndex + 1) % state.players.length;
-    state = state.copyWith(currentPlayer: state.players[nextPlayerIndex]);
+    return state.players[nextPlayerIndex];
   }
 
   bool search(int fieldIndex) {
@@ -146,12 +151,13 @@ class GameNotifier extends StateNotifier<Game> {
     );
     // フィールドをクリア
     _clearField(fieldIndex);
-    // 次のプレイヤーに交代
-    _turnToNextPlayer();
+    final nextPlayer = _findNextPlayer();
     // 全員が3回探したらボーナスフェーズに移行
-    if (currentPlayer.searchCount == 3) {
+    if (nextPlayer.searchCount == 3) {
       state = state.copyWith(isBonusPhase: true);
     }
+    // 次のプレイヤーに交代
+    _turnToNextPlayer();
     final isLastField = state.fields.every((field) => field.cards.isEmpty);
     return isLastField;
   }
@@ -164,7 +170,6 @@ class GameNotifier extends StateNotifier<Game> {
 
   int calculatePoint(List<Card> cards) {
     var total = 0;
-    final includesBomb = cards.any((card) => card.type == CardType.bomb);
     for (final color in PlayerColor.values) {
       final isCurrentPlayerColor = state.currentPlayer!.color == color;
       // 自分の色のカードは得点計算しない
@@ -172,13 +177,6 @@ class GameNotifier extends StateNotifier<Game> {
         continue;
       }
       final point = calculatePointByColor(cards, color);
-      final includesTreasureBox = cards.any(
-        (card) => card.color == color && card.type == CardType.treasureBox,
-      );
-      // 宝箱カードがある && 宝箱カードがない => 得点なし
-      if (includesTreasureBox && !includesBomb) {
-        continue;
-      }
       // 得点を加算
       total += point;
     }
@@ -186,15 +184,6 @@ class GameNotifier extends StateNotifier<Game> {
   }
 
   void getBonusPoint(List<Card> cards) {
-    // 爆弾カードがあるかどうか
-    final includesBomb = cards.any((card) => card.type == CardType.bomb);
-    // 宝箱カードがあるかどうか
-    final includesTreasureBox =
-        cards.any((card) => card.type == CardType.treasureBox);
-    // 宝箱カードがある && 宝箱カードがない => 得点なし
-    if (includesTreasureBox && !includesBomb) {
-      return;
-    }
     // 残っている自分のカードの2倍の得点を加算
     state = state.copyWith(
       players: [
@@ -212,6 +201,17 @@ class GameNotifier extends StateNotifier<Game> {
     if (filteredCards.isEmpty) {
       return 0;
     }
+
+    final includesTreasureBox =
+        filteredCards.any((card) => card.type == CardType.treasureBox);
+    final includesBomb =
+        filteredCards.any((card) => card.type == CardType.bomb);
+
+    // 爆弾カードがある && 宝箱カードがない => 得点なし
+    if (includesBomb && !includesTreasureBox) {
+      return 0;
+    }
+
     final point = filteredCards
         .map((card) => card.type.point)
         .reduce((value, element) => value + element);
