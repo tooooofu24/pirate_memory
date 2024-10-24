@@ -162,6 +162,16 @@ class GameNotifier extends StateNotifier<Game> {
     return isLastField;
   }
 
+  bool bonus(int fieldIndex) {
+    final field = state.fields[fieldIndex];
+    final cards = field.cards;
+    getBonusPoint(cards);
+    // フィールドをクリア
+    _clearField(fieldIndex);
+    final isLastField = state.fields.every((field) => field.cards.isEmpty);
+    return isLastField;
+  }
+
   void _clearField(int fieldIndex) {
     final newFields = List<Field>.from(state.fields);
     newFields[fieldIndex] = Field(cards: []);
@@ -204,8 +214,7 @@ class GameNotifier extends StateNotifier<Game> {
 
     final includesTreasureBox =
         filteredCards.any((card) => card.type == CardType.treasureBox);
-    final includesBomb =
-        filteredCards.any((card) => card.type == CardType.bomb);
+    final includesBomb = cards.any((card) => card.type == CardType.bomb);
 
     // 爆弾カードがある && 宝箱カードがない => 得点なし
     if (includesBomb && !includesTreasureBox) {
