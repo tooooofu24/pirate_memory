@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pirate_memory/screens/home/components/how_to_play_dialog.dart';
 import 'package:pirate_memory/screens/home/home_controller.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -27,7 +28,10 @@ class HomeScreen extends ConsumerWidget {
                   width: double.infinity,
                   height: 50,
                   child: FilledButton.tonal(
-                    onPressed: () => {},
+                    onPressed: () async => showDialog(
+                      context: context,
+                      builder: (context) => const HowToPlayDialog(),
+                    ),
                     child: const Text('遊び方'),
                   ),
                 ),
