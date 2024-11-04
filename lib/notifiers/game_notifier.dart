@@ -85,7 +85,10 @@ class GameNotifier extends StateNotifier<Game> {
     for (var i = 0; i < players.length; i++) {
       newPlayers[i] = players[i].copyWith(name: names[i]);
     }
-    state = state.copyWith(players: newPlayers);
+    state = state.copyWith(
+      players: newPlayers,
+      currentPlayer: newPlayers.first,
+    );
   }
 
   void hide(Card card, int fieldIndex) {
